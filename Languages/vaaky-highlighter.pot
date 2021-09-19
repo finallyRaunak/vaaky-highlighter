@@ -1,0 +1,289 @@
+# Copyright (C) 2021 Raunak Gupta
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: VaakyHighlighter 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/vaaky-highlighter\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-06-18T07:17:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: vaaky-highlighter\n"
+
+#. Plugin Name of the plugin
+msgid "VaakyHighlighter"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "http://example.com/vaaky-highlighter-uri/"
+msgstr ""
+
+#. Description of the plugin
+msgid "This is a short description of what the plugin does. It's displayed in the WordPress admin area."
+msgstr ""
+
+#. Author of the plugin
+msgid "Raunak Gupta"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.webhat.in/"
+msgstr ""
+
+#: Admin/Admin.php:94
+#: Frontend/Frontend.php:103
+msgid "Style could not be registered: "
+msgstr ""
+
+#: Admin/Admin.php:117
+#: Frontend/Frontend.php:128
+msgid "Script could not be registered: "
+msgstr ""
+
+#: Admin/NetworkSettings.php:140
+msgid "Network General"
+msgstr ""
+
+#: Admin/NetworkSettings.php:148
+msgid "Debug"
+msgstr ""
+
+#: Admin/NetworkSettings.php:187
+msgid "Plugin Name Network Options"
+msgstr ""
+
+#: Admin/NetworkSettings.php:192
+msgid "General"
+msgstr ""
+
+#: Admin/NetworkSettings.php:193
+msgid "Examples"
+msgstr ""
+
+#: Admin/NetworkSettings.php:227
+msgid "Failed security check."
+msgstr ""
+
+#: Admin/NetworkSettings.php:296
+msgid "Network General Options."
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:23
+msgid "System Information"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:26
+msgid "Server"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:27
+msgid "PHP Version:"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:28
+msgid "PHP JSON Extension:"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:29
+msgid "Operating System:"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:33
+msgid "Components"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:34
+msgid "Vaaky Highlighter Plugin:"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:35
+msgid "HighlightJs Version:"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:41
+msgid "Quick Links"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:46
+#: Admin/Settings.php:140
+msgid "Documentation"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:50
+msgid "FAQs"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:54
+msgid "Theme Demo"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:58
+msgid "Support Forum"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:62
+msgid "Report a Bug"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:66
+msgid "Review us!"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:70
+msgid "Request for a feature"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:74
+msgid "Catch us on Facebook"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:78
+msgid "Catch us on Twitter"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:82
+msgid "Catch us on WordPress"
+msgstr ""
+
+#: Admin/partials/setting-sidebar.php:86
+msgid "Author's Website"
+msgstr ""
+
+#: Admin/Settings.php:139
+msgid "Settings"
+msgstr ""
+
+#: Admin/Settings.php:151
+#: Admin/js/block.js:96
+msgid "Vaaky Highlighter Settings"
+msgstr ""
+
+#: Admin/Settings.php:152
+#: Admin/Settings.php:186
+#: Admin/js/block.js:51
+msgid "Vaaky Highlighter"
+msgstr ""
+
+#: Admin/Settings.php:177
+msgid "Settings saved."
+msgstr ""
+
+#: Admin/Settings.php:223
+msgid "Appearance"
+msgstr ""
+
+#: Admin/Settings.php:225
+msgid "Theme"
+msgstr ""
+
+#: Admin/Settings.php:227
+msgid "Code Overflow"
+msgstr ""
+
+#: Admin/Settings.php:229
+msgid "Line Numbering"
+msgstr ""
+
+#: Admin/Settings.php:231
+msgid "Line Hovereffect"
+msgstr ""
+
+#: Admin/Settings.php:233
+msgid "RAW Code on double click"
+msgstr ""
+
+#: Admin/Settings.php:236
+msgid "Toolbar Button"
+msgstr ""
+
+#: Admin/Settings.php:238
+msgid "RAW Code Button"
+msgstr ""
+
+#: Admin/Settings.php:240
+msgid "Copy Code"
+msgstr ""
+
+#: Admin/Settings.php:242
+msgid "Attribution Button"
+msgstr ""
+
+#: Admin/Settings.php:297
+msgid "Settings as stored in the database."
+msgstr ""
+
+#: Admin/Settings.php:307
+msgid "Show line number"
+msgstr ""
+
+#: Admin/Settings.php:318
+msgid "Show hover effect"
+msgstr ""
+
+#: Admin/Settings.php:330
+msgid "Show raw code on double click"
+msgstr ""
+
+#: Admin/Settings.php:342
+msgid "Show raw code button"
+msgstr ""
+
+#: Admin/Settings.php:353
+msgid "Show Copy Code Button"
+msgstr ""
+
+#: Admin/Settings.php:365
+msgid "Show Attribution"
+msgstr ""
+
+#: Admin/Settings.php:375
+msgid "New Line/Line Break"
+msgstr ""
+
+#: Admin/Settings.php:379
+msgid "Show Scrollbar"
+msgstr ""
+
+#: Admin/Settings.php:418
+msgid "Select a theme..."
+msgstr ""
+
+#: Admin/Settings.php:419
+msgid "Light Theme"
+msgstr ""
+
+#: Admin/Settings.php:426
+msgid "Dark Theme"
+msgstr ""
+
+#: Includes/Activator.php:54
+#: Includes/Activator.php:81
+msgid "You don't have proper authorization to activate a plugin!"
+msgstr ""
+
+#: Includes/Deactivator.php:38
+#: Includes/Deactivator.php:55
+msgid "You don't have proper authorization to deactivate a plugin!"
+msgstr ""
+
+#: Includes/Updater.php:77
+msgid "Update routine not callable: "
+msgstr ""
+
+#: Admin/js/block.js:13
+#: Admin/js/gutenberg.js:1
+msgid "Select a language"
+msgstr ""
+
+#: Admin/js/block.js:99
+#: Admin/js/gutenberg.js:1
+msgid "Language"
+msgstr ""
+
+#: Admin/js/gutenberg.js:1
+msgid "Snippet Settings"
+msgstr ""
