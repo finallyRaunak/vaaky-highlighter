@@ -10,7 +10,7 @@
 // If uninstall not called from WordPress, then exit.
 if (!defined('WP_UNINSTALL_PLUGIN'))
 {
-    exit;
+    exit();
 }
 
 $currentNetworkId = get_current_network_id();
@@ -83,6 +83,6 @@ function deleteNetworkOptions($currentNetworkId)
  */
 function deleteOptions()
 {
-    delete_option('vaaky-highlighter-general');
-    delete_option('vaaky-highlighter-example');
+    delete_option(VAAKY_HIGHLIGHTER_SLUG . '-settings-option');
+    delete_option(VAAKY_HIGHLIGHTER_SLUG . '-configuration');
 }

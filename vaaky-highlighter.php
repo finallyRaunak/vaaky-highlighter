@@ -52,7 +52,7 @@ define('VAAKY_HIGHLIGHTER_SLUG', 'vaaky-highlighter');
 define('VAAKY_HIGHLIGHTER_PLUGIN_PATH', dirname(__FILE__));
 
 /**
- * plugin dir path
+ * plugin dir base path
  */
 define('VAAKY_HIGHLIGHTER_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
@@ -60,7 +60,7 @@ define('VAAKY_HIGHLIGHTER_PLUGIN_BASENAME', plugin_basename(__FILE__));
  * highlightjs version
  * @link: https://github.com/highlightjs/highlight.js/releases
  */
-define('VAAKY_HIGHLIGHTER_HLJS_VERSION', '11.0.1');
+define('VAAKY_HIGHLIGHTER_HLJS_VERSION', '11.2.0');
 
 /**
  * Configuration data
@@ -68,37 +68,49 @@ define('VAAKY_HIGHLIGHTER_HLJS_VERSION', '11.0.1');
  *                  only when database update is required.
  */
 $configuration = array(
-    'version'       => VAAKY_HIGHLIGHTER_VERSION,
-    'db-version'    => 0
+    'version'    => VAAKY_HIGHLIGHTER_VERSION,
+    'db-version' => 0
 );
 
 /**
  * The ID for the configuration options in the database.
  */
 $configurationOptionName = VAAKY_HIGHLIGHTER_SLUG . '-configuration';
-    
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in Includes/Activator.php
  */
-register_activation_hook(__FILE__, function($networkWide) use($configuration, $configurationOptionName) {Activator::activate($networkWide, $configuration, $configurationOptionName);});
+register_activation_hook(__FILE__, function($networkWide) use($configuration, $configurationOptionName)
+{
+    Activator::activate($networkWide, $configuration, $configurationOptionName);
+});
 
 /**
  * Run the activation code when a new site is created.
  */
-add_action('wpmu_new_blog', function($blogId) {Activator::activateNewSite($blogId);});
+add_action('wpmu_new_blog', function($blogId)
+{
+    Activator::activateNewSite($blogId);
+});
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in Includes/Deactivator.php
  */
-register_deactivation_hook(__FILE__, function($networkWide) {Deactivator::deactivate($networkWide);});
+register_deactivation_hook(__FILE__, function($networkWide)
+{
+    Deactivator::deactivate($networkWide);
+});
 
 /**
  * Update the plugin.
  * It runs every time, when the plugin is started.
  */
-add_action('plugins_loaded', function() use ($configuration, $configurationOptionName) {Updater::update($configuration['db-version'], $configurationOptionName);}, 1);
+add_action('plugins_loaded', function() use ($configuration, $configurationOptionName)
+{
+    Updater::update($configuration['db-version'], $configurationOptionName);
+}, 1);
 
 /**
  * Begins execution of the plugin.
@@ -114,4 +126,5 @@ function vaakyHighlighterStart()
     $plugin = new Main();
     $plugin->run();
 }
+
 vaakyHighlighterStart();

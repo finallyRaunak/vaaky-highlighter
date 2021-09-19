@@ -122,7 +122,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 = 1.0.0 2021-06-22 =
 * First public release
-* Includes Highlight.js 11.0.1
+* Includes Highlight.js 12.2.0
 
 [See the changelog for all versions](https://github.com/finallyRaunak/vaaky-highlighter/blob/main/CHANGELOG.md).
 
