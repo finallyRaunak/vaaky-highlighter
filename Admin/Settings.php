@@ -44,9 +44,8 @@ class Settings extends SettingsBase
     private $menuSlug;
 
     /**
-     * General settings' group name.
-     *
      * @since    1.0.0
+     * @var array General settings'.
      */
     private $settingOptions;
 
@@ -55,12 +54,13 @@ class Settings extends SettingsBase
      * The slug-name of the section of the settings page in which to show the box.
      *
      * @since    1.0.0
+     * @var string
      */
     private $appearanceSettingsSectionId;
     private $toolbarSettingsSectionId;
 
     /**
-     * General settings page.
+     * @var string General settings page.
      * The slug-name of the settings page on which to show the section.
      *
      * @since    1.0.0
@@ -68,7 +68,7 @@ class Settings extends SettingsBase
     private $settingsPage;
 
     /**
-     * Name of general options. Expected to not be SQL-escaped.
+     * @var string Name of general options. Expected to not be SQL-escaped.
      *
      * @since    1.0.0
      */
@@ -79,10 +79,6 @@ class Settings extends SettingsBase
      */
     private $themeId;
     private $textOverflowId;
-    private $lineNumberingId;
-    private $lineHoverId;
-    private $showRawCodeId;
-    private $rawCodeBtnId;
     private $codeCopyBtnId;
     private $allowAttributionBtnId;
 
@@ -105,18 +101,14 @@ class Settings extends SettingsBase
          */
         $this->appearanceSettingsSectionId = $pluginSlug . '-appearance-section';
 
-        $this->themeId         = 'theme-appearance' . self::SELECT_SUFFIX;
-        $this->textOverflowId  = 'text-overflow-appearance' . self::RADIO_SUFFIX;
-        $this->lineNumberingId = 'line-number-appearance' . self::CHECKBOX_SUFFIX;
-        $this->lineHoverId     = 'line-hover-appearance' . self::CHECKBOX_SUFFIX;
-        $this->showRawCodeId   = 'raw-code-appearance' . self::CHECKBOX_SUFFIX;
+        $this->themeId        = 'theme-appearance' . self::SELECT_SUFFIX;
+        $this->textOverflowId = 'text-overflow-appearance' . self::RADIO_SUFFIX;
 
         /**
          * Toolbar Config
          */
         $this->toolbarSettingsSectionId = $pluginSlug . '-toolbar-section';
 
-        $this->rawCodeBtnId          = 'raw-code-btn-toolbar' . self::CHECKBOX_SUFFIX;
         $this->codeCopyBtnId         = 'code-copy-btn-toolbar' . self::CHECKBOX_SUFFIX;
         $this->allowAttributionBtnId = 'attribution-btn-toolbar' . self::CHECKBOX_SUFFIX;
     }
@@ -124,8 +116,8 @@ class Settings extends SettingsBase
     /**
      * Register all the hooks of this class.
      *
-     * @since    1.0.0
-     * @param   bool    $isAdmin    Whether the current request is for an administrative interface page.
+     * @since 1.0.0
+     * @param bool  $isAdmin Whether the current request is for an administrative interface page.
      */
     public function initializeHooks($isAdmin)
     {
@@ -222,19 +214,15 @@ class Settings extends SettingsBase
         $this->getSettingOptions();
 
         //Appearance Section
-        add_settings_section($this->appearanceSettingsSectionId, __('Appearance', 'vaaky-highlighter'), array($this, 'inputApperanceCallback'), $this->settingsPage);
+//        add_settings_section($this->appearanceSettingsSectionId, __('Appearance', 'vaaky-highlighter'), array($this, 'inputApperanceCallback'), $this->settingsPage);
+        add_settings_section($this->appearanceSettingsSectionId, __('Appearance', 'vaaky-highlighter'), array(), $this->settingsPage);
 
         add_settings_field($this->themeId, __('Theme', 'vaaky-highlighter'), array($this, 'selectThemeCallback'), $this->settingsPage, $this->appearanceSettingsSectionId, array('label_for' => $this->themeId));
 
         add_settings_field($this->textOverflowId, __('Code Overflow', 'vaaky-highlighter'), array($this, 'radioOverflowCallback'), $this->settingsPage, $this->appearanceSettingsSectionId, array('label_for' => $this->textOverflowId));
 
-//        add_settings_field($this->lineNumberingId, __('Line Numbering', 'vaaky-highlighter'), array($this, 'checkboxLineNumberCallback'), $this->settingsPage, $this->appearanceSettingsSectionId, array('label_for' => $this->lineNumberingId));
-//        add_settings_field($this->lineHoverId, __('Line Hovereffect', 'vaaky-highlighter'), array($this, 'checkboxLineHoverCallback'), $this->settingsPage, $this->appearanceSettingsSectionId, array('label_for' => $this->lineHoverId));
-//        add_settings_field($this->showRawCodeId, __('RAW Code on double click', 'vaaky-highlighter'), array($this, 'checkboxShowRawCodeCallback'), $this->settingsPage, $this->appearanceSettingsSectionId, array('label_for' => $this->showRawCodeId));
         //Toolbar Section
         add_settings_section($this->toolbarSettingsSectionId, __('Toolbar Button', 'vaaky-highlighter'), array(), $this->settingsPage);
-
-//        add_settings_field($this->rawCodeBtnId, __('RAW Code Button', 'vaaky-highlighter'), array($this, 'checkboxRawCodeBtnCallback'), $this->settingsPage, $this->toolbarSettingsSectionId, array('label_for' => $this->rawCodeBtnId));
 
         add_settings_field($this->codeCopyBtnId, __('Copy Code', 'vaaky-highlighter'), array($this, 'checkboxCodeCopyBtnCallback'), $this->settingsPage, $this->toolbarSettingsSectionId, array('label_for' => $this->codeCopyBtnId));
 
@@ -290,10 +278,6 @@ class Settings extends SettingsBase
         return array(
             $this->themeId               => 'github',
             $this->textOverflowId        => 'scrollbar',
-//            $this->lineNumberingId       => 0,
-//            $this->lineHoverId           => 0,
-//            $this->showRawCodeId         => 0,
-//            $this->rawCodeBtnId          => 0,
             $this->codeCopyBtnId         => 1,
             $this->allowAttributionBtnId => 1
         );
@@ -309,30 +293,6 @@ class Settings extends SettingsBase
     {
         $this->settingOptions = $this->getSettingOptions();
         return !empty($this->settingOptions[$this->textOverflowId]) ? $this->settingOptions[$this->textOverflowId] : 'scrollbar';
-    }
-
-    public function getLineNumbering()
-    {
-        $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->lineNumberingId]) ? $this->settingOptions[$this->lineNumberingId] : false;
-    }
-
-    public function getLineHover()
-    {
-        $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->lineHoverId]) ? $this->settingOptions[$this->lineHoverId] : false;
-    }
-
-    public function getShowRawCode()
-    {
-        $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->showRawCodeId]) ? $this->settingOptions[$this->showRawCodeId] : false;
-    }
-
-    public function getRawCodeBtn()
-    {
-        $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->rawCodeBtnId]) ? $this->settingOptions[$this->rawCodeBtnId] : false;
     }
 
     public function getCodeCopyBtn()

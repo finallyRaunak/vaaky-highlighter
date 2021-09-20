@@ -5,7 +5,6 @@ namespace VaakyHighlighter\Includes;
 use VaakyHighlighter\Includes\I18n;
 use VaakyHighlighter\Admin\Admin;
 use VaakyHighlighter\Admin\Settings;
-use VaakyHighlighter\Admin\NetworkSettings;
 use VaakyHighlighter\Frontend\Frontend;
 
 // If this file is called directly, abort.
@@ -66,7 +65,6 @@ class Main
     private function defineHooks()
     {
         $isAdmin = is_admin();
-        $isNetworkAdmin = is_network_admin();
 
         /**
          * Includes objects - Register all of the hooks related both to the admin area and to the public-facing functionality of the plugin.
@@ -76,16 +74,6 @@ class Main
 
         // The Settings' hook initialization runs on Admin area only.
         $settings = new Settings($this->pluginSlug);
-
-
-        /**
-         * Network Admin objects - Register all of the hooks related to the network admin area functionality of the plugin.
-         */
-        if ($isNetworkAdmin)
-        {
-            $networkSettings = new NetworkSettings($this->pluginSlug);
-            $networkSettings->initializeHooks($isNetworkAdmin);
-        }
 
         /**
          * Admin objects - Register all of the hooks related to the admin area functionality of the plugin.
@@ -105,6 +93,10 @@ class Main
             $frontend = new Frontend($this->pluginSlug, $this->version, $settings);
             $frontend->initializeHooks($isAdmin);
         }
+        /**
+         * Only for plugin development purpose, DO NOT uncomment it on production server.
+         */
+//        add_action('template_redirect', array($this, 'updateCSSFromCDN'), 10);
     }
 
     /**
@@ -116,4 +108,27 @@ class Main
     {
         $this->defineHooks();
     }
+    
+    /**
+     * Updated all the css (/Frontend/css/) from CDN lib of highlightjs
+     * It is only used during the development time not for production use.
+     */
+//    public function updateCSSFromCDN()
+//    {
+//        $cdnPath = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@" . VAAKY_HIGHLIGHTER_HLJS_VERSION . "/build/styles/";
+//        $files   = scandir(VAAKY_HIGHLIGHTER_PLUGIN_PATH . '/Frontend/css/');
+//        var_dump($files);
+//        
+//        foreach ($files as $filename)
+//        {
+//            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+//            if (($ext != 'css') || ($filename == 'core.css'))
+//            {
+//                continue;
+//            }
+//            echo $filename . '<br/>';
+//            $temp = file_get_contents($cdnPath . $filename);
+//            file_put_contents(VAAKY_HIGHLIGHTER_PLUGIN_PATH . '/Frontend/css/' . $filename, $temp);
+//        }
+//    }
 }

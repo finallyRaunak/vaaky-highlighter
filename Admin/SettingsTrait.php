@@ -65,52 +65,6 @@ trait SettingsTrait
         var_dump($this->settingOptions);
     }
 
-    public function checkboxLineNumberCallback()
-    {
-        $checked = (!empty($this->settingOptions[$this->lineNumberingId])) ? 1 : 0;
-        $html    = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->lineNumberingId, $this->settingOptionName, $this->lineNumberingId, checked($checked, true, false));
-        $html    .= '&nbsp;';
-
-        $html .= sprintf('<label for="%s">%s</label>', $this->lineNumberingId, __('Show line number', 'vaaky-highlighter'));
-
-        echo $html;
-    }
-
-    public function checkboxLineHoverCallback()
-    {
-        $checked = (!empty($this->settingOptions[$this->lineHoverId])) ? 1 : 0;
-        $html    = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->lineHoverId, $this->settingOptionName, $this->lineHoverId, checked($checked, true, false));
-        $html    .= '&nbsp;';
-
-        $html .= sprintf('<label for="%s">%s</label>', $this->lineHoverId, __('Show hover effect', 'vaaky-highlighter'));
-
-        echo $html;
-    }
-
-    public function checkboxShowRawCodeCallback()
-    {
-        $checked = (!empty($this->settingOptions[$this->showRawCodeId])) ? 1 : 0;
-
-        $html = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->showRawCodeId, $this->settingOptionName, $this->showRawCodeId, checked($checked, true, false));
-        $html .= '&nbsp;';
-
-        $html .= sprintf('<label for="%s">%s</label>', $this->showRawCodeId, __('Show raw code on double click', 'vaaky-highlighter'));
-
-        echo $html;
-    }
-
-    public function checkboxRawCodeBtnCallback()
-    {
-        $checked = (!empty($this->settingOptions[$this->rawCodeBtnId])) ? 1 : 0;
-
-        $html = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->rawCodeBtnId, $this->settingOptionName, $this->rawCodeBtnId, checked($checked, true, false));
-        $html .= '&nbsp;';
-
-        $html .= sprintf('<label for="%s">%s</label>', $this->rawCodeBtnId, __('Show raw code button', 'vaaky-highlighter'));
-
-        echo $html;
-    }
-
     public function checkboxCodeCopyBtnCallback()
     {
         $checked = (!empty($this->settingOptions[$this->codeCopyBtnId])) ? 1 : 0;
