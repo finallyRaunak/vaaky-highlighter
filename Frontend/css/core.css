@@ -1,7 +1,7 @@
 .wp-block-vaaky-highlighter-code-khand{position:relative}
 .vaaky-toolbar{position:absolute;top:8px;right:8px;display:none}
 .wp-block-vaaky-highlighter-code-khand:hover .vaaky-toolbar{display:block}
-.vaaky-btn{background:#fff;border:.125em solid #000;cursor:pointer;font:600 14px sans-serif;letter-spacing:.125em;margin:.5rem;padding:.5em .75em;position:relative;text-transform:uppercase}
+.vaaky-btn{background:#fff;border:.125em solid #000;cursor:pointer;font:600 14px sans-serif;letter-spacing:.125em;margin:.5rem;padding:.5em .75em;position:relative;text-transform:uppercase;text-decoration:none;color:#000000}
 .vaaky-btn:before,.vaaky-btn:after{content:'';position:absolute;transition:all .125s ease-in-out}
 .vaaky-btn:after{border:.125em dashed #000;bottom:-.125em;left:-.125em;right:-.125em;top:-.125em}
 .vaaky-btn:hover:after,.vaaky-btn:focus:after{bottom:.125em;left:.125em;right:.125em;top:.125em}

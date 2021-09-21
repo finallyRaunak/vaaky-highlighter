@@ -21,7 +21,7 @@ Using it will be as straightforward as adding a replacement Vaaky Highlighter So
 
 = Minimum Requirements =
 
-* PHP 7.2 or greater is recommended
+* PHP 5.6 or greater is recommended
 * WordPress 5.0 or greater is recommended
 
 = Automatic installation =
@@ -112,11 +112,14 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Plugin Settings Page
+2. Visual Studio 2015 Theme: JavaScript Snippet
+3. Visual Studio 2015 Theme: PHP Snippet
+4. Visual Studio 2015 Theme: YAML Snippet
+5. Sublime (Monokai) Theme: JavaScript Snippet
+6. Sublime (Monokai) Theme: YAML Snippet
+7. Sublime (Monokai) Theme: PHP Snippet with Scrollbar
+8. Sublime (Monokai) Theme: PHP Snippet with Line Wrap
 
 == Changelog ==
 
