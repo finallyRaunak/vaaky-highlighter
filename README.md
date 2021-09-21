@@ -45,9 +45,4 @@ Feature requests can be [submitted to our issue tracker](https://github.com/fina
 - [HighlightJs](https://github.com/highlightjs/highlight.js)
 
 
-<p align="center">
-    <br/><br/>
-
-    Made with 💜 by [WebHat](https://www.webhat.in/).
-
-</p>
+Made with 💜 by <a href="https://www.webhat.in/">WebHat</a>.
