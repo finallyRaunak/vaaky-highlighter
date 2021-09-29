@@ -3,7 +3,7 @@ Contributors: raunak01
 Donate link: https://www.webhat.in/
 Tags: syntax highlighter, gutenberg, blocks, snippets, highlight.js, highlighter, php, js, sourcecode, code
 Requires at least: 5.0
-Tested up to: 5.7.2
+Tested up to: 5.8.1
 Requires PHP: 5.6
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -123,7 +123,7 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 
 == Changelog ==
 
-= 1.0.0 2021-06-22 =
+= 1.0.0 2021-09-29 =
 * First public release
 * Includes Highlight.js 12.2.0
 
