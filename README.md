@@ -1,8 +1,6 @@
+# Vaaky Highlighter
 
-
-<p align="center">logo/graphics</p>
-
-<p align="center">
+![vaakya highlighter banner](./assets/banner-1544x500.jpg "Code highlighter plugin for WordPress")
 
 ![GitHub](https://img.shields.io/github/license/finallyRaunak/vaaky-highlighter?style=flat-square)
 ![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/vaaky-highlighter?style=flat-square)
@@ -11,8 +9,6 @@
 [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/vaaky-highlighter?style=flat-square)](https://wordpress.org/plugins/vaaky-highlighter/advanced/)
 ![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/vaaky-highlighter?style=flat-square)
 [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/vaaky-highlighter?style=flat-square)](https://wordpress.org/support/plugin/vaaky-highlighter/reviews/)
-
-</p>
 
 
 Welcome to the Vaaky Highlighter repository on GitHub. Vaaky Highlighter is yet another syntax or code Snippet highlighter plugin, it uses [highlightjs plugin](https://github.com/highlightjs/highlight.js). Here you can browse the source, look at open issues and keep track of development. 
@@ -43,6 +39,8 @@ Feature requests can be [submitted to our issue tracker](https://github.com/fina
 
 - [WP Plugin Boilerplate](https://github.com/adamradocz/WordPress-Plugin-Template)
 - [HighlightJs](https://github.com/highlightjs/highlight.js)
+- Banner image by [Pexels](https://pixabay.com/users/pexels-2286921/) from [Pixabay](https://pixabay.com/)
+- Icons made by [Freepik](https://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/)
 
 
 Made with 💜 by <a href="https://www.webhat.in/">WebHat</a>.
