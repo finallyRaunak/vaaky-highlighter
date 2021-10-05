@@ -123,7 +123,7 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 
 == Changelog ==
 
-= 1.0.0 2021-09-29 =
+= 1.0.0 2021-10-05 =
 * First public release
 * Includes Highlight.js 12.2.0
 

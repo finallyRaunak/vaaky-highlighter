@@ -1,6 +1,6 @@
 # Vaaky Highlighter
 
-![vaakya highlighter banner](./assets/banner-1544x500.jpg "Code highlighter plugin for WordPress")
+![vaakya highlighter banner](./.wordpress-org/banner-1544x500.jpg "Code highlighter plugin for WordPress")
 
 ![GitHub](https://img.shields.io/github/license/finallyRaunak/vaaky-highlighter?style=flat-square)
 ![WordPress Plugin Required PHP Version](https://img.shields.io/wordpress/plugin/required-php/vaaky-highlighter?style=flat-square)
