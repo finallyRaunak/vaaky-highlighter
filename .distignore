@@ -5,8 +5,9 @@
 
 .distignore
 .gitignore
+CHANGELOG.md
+CODE_OF_CONDUCT.md
 package-lock.json
 package.json
-webpack.config.js
 README.md
-CHANGELOG.md
+webpack.config.js
