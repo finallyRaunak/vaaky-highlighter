@@ -50,7 +50,7 @@ if (!defined('ABSPATH'))
             </li>
             <li>
                 <span class="dashicons dashicons-art"></span>
-                <a target="_blank" href="#"><?= __('Theme Demo', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" href="https://www.webhat.in/?page_id=626&utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=<?= $_SERVER['HTTP_HOST']; ?>&utm_id=vaaky_highlighter&utm_term=Theme+Demo"><?= __('Theme Demo', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-sos"></span>
@@ -82,7 +82,7 @@ if (!defined('ABSPATH'))
             </li>
             <li>
                 <span class="dashicons dashicons-external"></span>
-                <a target="_blank" href="https://www.webhat.in/?utm_source=vaaky-highlighter&utm_medium=wp-admin-link&utm_campaign=<?= $_SERVER['HTTP_HOST']; ?>"><?= __('Author\'s Website', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" href="https://www.webhat.in/?utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=<?= $_SERVER['HTTP_HOST']; ?>&utm_id=vaaky_highlighter&utm_term=Author%27s+Website"><?= __('Author\'s Website', 'vaaky-highlighter'); ?></a>
             </li>
         </ul>
     </div>
