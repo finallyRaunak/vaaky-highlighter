@@ -133,7 +133,7 @@ class Settings extends SettingsBase
     public function buildActionLinks($actions)
     {
         $actions[] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=' . $this->menuSlug)) . '">' . __('Settings', 'vaaky-highlighter') . '</a>';
-        $actions[] = '<a href="#" target="_blank">' . __('Documentation', 'vaaky-highlighter') . '</a>';
+//        $actions[] = '<a href="#" target="_blank">' . __('Documentation', 'vaaky-highlighter') . '</a>';
         return $actions;
     }
 
@@ -148,7 +148,7 @@ class Settings extends SettingsBase
                 __('Vaaky Highlighter', 'vaaky-highlighter'), // Menu title: The text to be used for the menu.
                 'manage_options', // Capability: The capability required for this menu to be displayed to the user.
                 $this->menuSlug, // Menu slug: The slug name to refer to this menu by. Should be unique for this menu page.
-                array($this, 'renderSettingsPageContent'), // Callback: The name of the function to call when rendering this menu's page
+                array($this, 'renderSettingsPageContent') // Callback: The name of the function to call when rendering this menu's page
         );
     }
 
