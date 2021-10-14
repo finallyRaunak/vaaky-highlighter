@@ -15,6 +15,10 @@ Welcome to the Vaaky Highlighter repository on GitHub. Vaaky Highlighter is yet 
 
 If you are not a developer, please use the [Vaaky Highlighter plugin page](https://wordpress.org/plugins/vaaky-highlighter/) on WordPress.org.
 
+### Quick Links
+
+- [Theme Demo](https://www.webhat.in/?page_id=626&utm_source=github&utm_medium=readme.md&utm_campaign=repositories&utm_id=vaaky_highlighter&utm_term=Theme+Demo)
+
 ### About Highlight.js
 
 Highlight.js is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It can work with pretty much any markup, doesn’t depend on any other frameworks, and has automatic language detection.

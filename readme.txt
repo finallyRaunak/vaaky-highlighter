@@ -5,7 +5,7 @@ Tags: syntax highlighter, gutenberg, blocks, snippets, highlight.js, highlighter
 Requires at least: 5.0
 Tested up to: 5.8.1
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,8 @@ Simple yet elegant syntax or code highlighter based on highlight.js. It allows y
 Vaaky Highlighter is a free, easy-to-use, syntax highlighting tool for WordPress. Highlighting is powered by the [Highlight.js](https://github.com/highlightjs/highlight.js) javaScript syntax highlighter with language auto-detection and zero dependencies.
 
 Using it will be as straightforward as adding a replacement Vaaky Highlighter Sourcecode block (Gutenberg) and insert the code that you wish to highlight: Vaaky Highlighter takes care of the rest!
+
+**Here is the [demo page](https://www.webhat.in/?page_id=626&utm_source=wordpress.org&utm_medium=readme.txt&utm_campaign=link&utm_id=vaaky_highlighter&utm_term=Theme+Demo) of all the supported themes.**
 
 == Installation ==
 
@@ -62,7 +64,6 @@ Having issue? Check the WordPress codex contains [instructions on how to do this
 - DOS
 - Django
 - Dockerfile
-- Erlang
 - Go
 - HTML
 - XML
@@ -86,6 +87,7 @@ Having issue? Check the WordPress codex contains [instructions on how to do this
 - Shell
 - Twig
 - TypeScript
+- YAML/YML
 
 == Frequently Asked Questions ==
 
@@ -123,9 +125,17 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 
 == Changelog ==
 
+= 1.0.1 2021-10-15 =
+* Fix - Console warning like "Could not find the language <lang name>, did you forget to load/include a language module?".
+* Fix - False warning of unescaped HTML code blocks.
+* Feature - Added support for YAML/YML.
+* Dev - Added demo link from where user can check all the supported theme & their look and feel.
+* Fix - cmd typo with dos in ./Admin/js/gutenberg.js.
+* Fix - Fatal error which was occurring in specific version of PHP.
+
 = 1.0.0 2021-10-05 =
 * First public release
-* Includes Highlight.js 12.2.0
+* Includes Highlight.js 11.2.0
 
 [See the changelog for all versions](https://github.com/finallyRaunak/vaaky-highlighter/blob/main/CHANGELOG.md).
 
