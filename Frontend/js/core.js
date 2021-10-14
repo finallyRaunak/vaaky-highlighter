@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+    hljs.configure({ ignoreUnescapedHTML: true });
     hljs.highlightAll();
 
     jQuery('.vaaky-toolbar .vaaky-copy-btn').off('click').on('click', function () {
@@ -22,7 +23,7 @@ jQuery(document).ready(function ($) {
 
 
     jQuery('.vaaky-toolbar .vaaky-website-btn').off('click').on('click', function () {
-        window.open("https://www.webhat.in/?utm_source=vaaky-highlighter&utm_medium=website-btn&utm_campaign=" + jQuery(location).attr('hostname'));
+        window.open("https://www.webhat.in/?utm_source=plugin&utm_medium=code_btn&utm_id=vaaky_highlighter&utm_term=Website&utm_campaign=" + jQuery(location).attr('hostname'));
     });
 
 });
