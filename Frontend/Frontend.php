@@ -50,6 +50,14 @@ class Frontend
     private $settings;
 
     /**
+     * List of all extra modules of highlightjs which are not bundled with core
+     *
+     * @var array
+     * @since 1.0.1
+     */
+    private $extModule;
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since   1.0.0
@@ -62,6 +70,7 @@ class Frontend
         $this->pluginSlug = $pluginSlug;
         $this->version    = $version;
         $this->settings   = $settings;
+        $this->extModule  = ['apache', 'dns', 'django', 'dockerfile', 'handlebars', 'nginx', 'pgsql', 'powershell', 'twig', 'dos'];
     }
 
     /**
@@ -75,8 +84,8 @@ class Frontend
         // Frontend
         if (!$isAdmin)
         {
-            add_action('wp_enqueue_scripts', array($this, 'enqueueStyles'), 10);
-            add_action('wp_enqueue_scripts', array($this, 'enqueueScripts'), 10);
+            add_action('wp_enqueue_scripts', array($this, 'registerStyles'), 10);
+            add_action('wp_enqueue_scripts', array($this, 'registerScripts'), 10);
 
             add_shortcode('vaakyHighlighterCode', array($this, 'codeBlockShortcode'));
         }
@@ -87,7 +96,7 @@ class Frontend
      *
      * @since    1.0.0
      */
-    public function enqueueStyles()
+    public function registerStyles()
     {
         $styleBaseUrl = plugin_dir_url(__FILE__) . 'css/';
 
@@ -112,7 +121,7 @@ class Frontend
      *
      * @since    1.0.0
      */
-    public function enqueueScripts()
+    public function registerScripts()
     {
         $scriptBaseUrl = plugin_dir_url(__FILE__) . 'js/';
 
@@ -126,19 +135,15 @@ class Frontend
         {
             exit(esc_html__('Script could not be registered: ', 'vaaky-highlighter') . $scriptUrl);
         }
-        
+
+        foreach ($this->extModule as $lang)
+        {
+            wp_register_script($this->pluginSlug . '-hljs-' . $lang, $scriptBaseUrl . $lang . '.min.js', array($scriptId), $this->version, false);
+        }
     }
 
     public function codeBlockShortcode($atts = array(), $content = null, $tag = 'vaakyHighlighterCode')
     {
-        //Loading the style
-        wp_enqueue_style($this->pluginSlug . '-theme');
-        wp_enqueue_style($this->pluginSlug . '-frontend');
-        
-        //Loading the scripts
-        wp_enqueue_script($this->pluginSlug . '-hljs');
-        wp_enqueue_script($this->pluginSlug . '-frontend');
-
         $codeClass = [];
         $atts      = array_change_key_case((array) $atts, CASE_LOWER);
         $shAtts    = shortcode_atts(
@@ -147,6 +152,8 @@ class Frontend
                 ), $atts, $tag
         );
         $overflow  = $this->settings->getTextOverflow();
+
+        $this->enqueueNeededAssets(!empty($shAtts['lang']) ? $shAtts['lang'] : null );
 
         $codeClass[] = ($overflow == 'new-line') ? 'vaaky-line-break' : '';
         $codeClass[] = (!empty($shAtts['lang']) ? ('language-' . $shAtts['lang'] ) : '' );
@@ -175,6 +182,28 @@ class Frontend
         $o .= '</div>';
 
         return $o;
+    }
+
+    /**
+     * Enqueue CSS and JS needed by specific short code block
+     * 
+     * @param string $lang
+     * @since 1.0.1
+     */
+    private function enqueueNeededAssets($lang = null)
+    {
+        //Loading the style
+        wp_enqueue_style($this->pluginSlug . '-theme');
+        wp_enqueue_style($this->pluginSlug . '-frontend');
+
+        //Loading the scripts
+        wp_enqueue_script($this->pluginSlug . '-hljs');
+        wp_enqueue_script($this->pluginSlug . '-frontend');
+
+        if (!empty($lang) && in_array($lang, $this->extModule))
+        {
+            wp_enqueue_script($this->pluginSlug . '-hljs-' . $lang);
+        }
     }
 
 }
