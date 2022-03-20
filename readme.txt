@@ -3,9 +3,9 @@ Contributors: raunak01
 Donate link: https://www.webhat.in/
 Tags: syntax highlighter, gutenberg, blocks, snippets, highlight.js, highlighter, php, js, sourcecode, code
 Requires at least: 5.0
-Tested up to: 5.8.1
+Tested up to: 5.9.2
 Requires PHP: 5.6
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,10 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 8. Sublime (Monokai) Theme: PHP Snippet with Line Wrap
 
 == Changelog ==
+
+= 1.0.2 2022-03-20 =
+* Updated Website URL
+* Tested and updated WordPress compatibility with new version
 
 = 1.0.1 2021-10-15 =
 * Fix - Console warning like "Could not find the language <lang name>, did you forget to load/include a language module?".
