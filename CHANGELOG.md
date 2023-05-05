@@ -1,5 +1,18 @@
 # Vaaky Highlighter - Changelog
 
+### 1.0.4 &#8594; 2023-05-05
+
+- Tested and updated WordPress compatibility with new version
+
+### 1.0.3 &#8594; 2022-10-26
+
+- Tested and updated WordPress compatibility with new version
+
+### 1.0.2 &#8594; 2022-03-20
+
+- Updated Website URL
+- Tested and updated WordPress compatibility with new version
+
 ### 1.0.1 &#8594; 2021-10-15
 
 - Fix - Console warning like "Could not find the language <lang name>, did you forget to load/include a language module?".
