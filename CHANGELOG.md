@@ -1,5 +1,10 @@
 # Vaaky Highlighter - Changelog
 
+### 1.0.5 &#8594; 2023-09-09
+
+- Fix - Notice: Trying to access array offset on value of type bool
+- Tested and updated WordPress compatibility with new version
+
 ### 1.0.4 &#8594; 2023-05-05
 
 - Tested and updated WordPress compatibility with new version

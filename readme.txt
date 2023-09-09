@@ -3,9 +3,9 @@ Contributors: raunak01
 Donate link: https://www.webhat.in/
 Tags: syntax highlighter, gutenberg, blocks, snippets, highlight.js, highlighter, php, js, sourcecode, code
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.3.1
 Requires PHP: 5.6
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,10 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 8. Sublime (Monokai) Theme: PHP Snippet with Line Wrap
 
 == Changelog ==
+
+= 1.0.5 2023-09-09 =
+* Fix - Notice: Trying to access array offset on value of type bool
+* Tested and updated WordPress compatibility with new version
 
 = 1.0.4 2023-05-05 =
 * Tested and updated WordPress compatibility with new version

@@ -10,7 +10,7 @@
  * Plugin Name:       Vaaky Highlighter
  * Plugin URI:        https://wordpress.org/plugin/vaaky-highlighter
  * Description:       Simple yet elegant syntax or code highlighter based on highlight.js. It allows you to add engaging snippet code blocks.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            Raunak Gupta
  * Author URI:        https://www.webhat.in/
  * License:           GPL-2.0+
@@ -24,7 +24,6 @@ namespace VaakyHighlighter;
 
 use VaakyHighlighter\Includes\Activator;
 use VaakyHighlighter\Includes\Deactivator;
-use VaakyHighlighter\Includes\Updater;
 use VaakyHighlighter\Includes\Main;
 
 // If this file is called directly, abort.
@@ -39,7 +38,7 @@ require_once plugin_dir_path(__FILE__) . 'Autoloader.php';
 /**
  * Current plugin version.
  */
-define('VAAKY_HIGHLIGHTER_VERSION', '1.0.4');
+define('VAAKY_HIGHLIGHTER_VERSION', '1.0.5');
 
 /**
  * The string used to uniquely identify this plugin.
@@ -102,15 +101,6 @@ register_deactivation_hook(__FILE__, function($networkWide)
 {
     Deactivator::deactivate($networkWide);
 });
-
-/**
- * Update the plugin.
- * It runs every time, when the plugin is started.
- */
-add_action('plugins_loaded', function() use ($configuration, $configurationOptionName)
-{
-    Updater::update($configuration['db-version'], $configurationOptionName);
-}, 1);
 
 /**
  * Begins execution of the plugin.
