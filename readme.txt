@@ -3,9 +3,9 @@ Contributors: raunak01
 Donate link: https://www.webhat.in/
 Tags: syntax highlighter, gutenberg, blocks, snippets, highlight.js, highlighter, php, js, sourcecode, code
 Requires at least: 5.0
-Tested up to: 6.3.1
+Tested up to: 6.4.2
 Requires PHP: 5.6
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,31 +125,16 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 
 == Changelog ==
 
+= 1.0.6 2024-01-01 =
+* Fix - declare $settingOptionGroup in Settings.php to silence deprecated message [6457d69](https://github.com/finallyRaunak/vaaky-highlighter/commit/6457d698f091e2c8cbdf76896004875a561f988c)
+* Tested and updated WordPress compatibility with new version
+
 = 1.0.5 2023-09-09 =
 * Fix - Notice: Trying to access array offset on value of type bool
 * Tested and updated WordPress compatibility with new version
 
 = 1.0.4 2023-05-05 =
 * Tested and updated WordPress compatibility with new version
-
-= 1.0.3 2022-10-26 =
-* Tested and updated WordPress compatibility with new version
-
-= 1.0.2 2022-03-20 =
-* Updated Website URL
-* Tested and updated WordPress compatibility with new version
-
-= 1.0.1 2021-10-15 =
-* Fix - Console warning like "Could not find the language <lang name>, did you forget to load/include a language module?".
-* Fix - False warning of unescaped HTML code blocks.
-* Feature - Added support for YAML/YML.
-* Dev - Added demo link from where user can check all the supported theme & their look and feel.
-* Fix - cmd typo with dos in ./Admin/js/gutenberg.js.
-* Fix - Fatal error which was occurring in specific version of PHP.
-
-= 1.0.0 2021-10-05 =
-* First public release
-* Includes Highlight.js 11.2.0
 
 [See the changelog for all versions](https://github.com/finallyRaunak/vaaky-highlighter/blob/main/CHANGELOG.md).
 

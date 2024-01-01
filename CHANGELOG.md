@@ -1,5 +1,10 @@
 # Vaaky Highlighter - Changelog
 
+### 1.0.6 &#8594; 2024-01-01
+
+- Fix - declare $settingOptionGroup in Settings.php to silence deprecated message [6457d69](https://github.com/finallyRaunak/vaaky-highlighter/commit/6457d698f091e2c8cbdf76896004875a561f988c)
+- Tested and updated WordPress compatibility with new version
+
 ### 1.0.5 &#8594; 2023-09-09
 
 - Fix - Notice: Trying to access array offset on value of type bool
