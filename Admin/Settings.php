@@ -68,6 +68,13 @@ class Settings extends SettingsBase
     private $settingsPage;
 
     /**
+     * @var string Name of group of setting options.
+     * 
+     * @since    1.0.0
+     */
+    private $settingOptionGroup;
+
+    /**
      * @var string Name of general options. Expected to not be SQL-escaped.
      *
      * @since    1.0.0
