@@ -23,6 +23,10 @@ trait SettingsTrait
             'atom-one-dark-reasonable' => 'Atom One Dark (with ReasonML)',
             'androidstudio'            => 'Android Studio',
             'a11y-dark'                => 'A 11 Y Dark',
+            'tokyo-night-dark'         => 'Tokyo Night Dark',
+            'rose-pine'                => 'Rose Pine',
+            'rose-pine-moon'           => 'Rose Pine Moon',
+            'nord'                     => 'Nord',
         ];
         $themeLight = [
             'github'              => 'Github',
@@ -35,6 +39,8 @@ trait SettingsTrait
             'atom-one-light'      => 'Atom One Light',
             'arduino-light'       => 'Arduino Light',
             'a11y-light'          => 'A 11 Y Light',
+            'tokyo-night-light'   => 'Tokyo Night Light',
+            'rose-pine-dawn'      => 'Rose Pine Dawn',
         ];
 
         $html = sprintf('<select id="%s" name="%s[%s]">', $this->themeId, $this->settingOptionName, $this->themeId);

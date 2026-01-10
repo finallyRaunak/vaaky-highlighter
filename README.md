@@ -25,7 +25,7 @@ Highlight.js is a syntax highlighter written in JavaScript. It works in the brow
 
 ### Requirements
 - PHP >= 5.6
-- WordPress >= 5.0
+- WordPress >= 6.0
 
 ### Reporting Security Issues
 To disclose a security issue to us, [please submit an issue with detailed report](https://github.com/finallyRaunak/vaaky-highlighter/issues/new/).

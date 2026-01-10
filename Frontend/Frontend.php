@@ -70,7 +70,7 @@ class Frontend
         $this->pluginSlug = $pluginSlug;
         $this->version    = $version;
         $this->settings   = $settings;
-        $this->extModule  = ['apache', 'dns', 'django', 'dockerfile', 'handlebars', 'nginx', 'pgsql', 'powershell', 'twig', 'dos'];
+        $this->extModule  = ['apache', 'bash', 'c', 'cpp', 'csharp', 'css', 'django', 'dns', 'dockerfile', 'dos', 'go', 'handlebars', 'java', 'javascript', 'json', 'markdown', 'nginx', 'objectivec', 'pgsql', 'php', 'plaintext', 'powershell', 'python', 'r', 'ruby', 'rust', 'scss', 'shell', 'sql', 'twig', 'typescript', 'xml', 'yaml'];
     }
 
     /**

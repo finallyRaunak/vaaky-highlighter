@@ -2,10 +2,10 @@
 Contributors: raunak01
 Donate link: https://www.webhat.in/
 Tags: syntax highlighter, gutenberg, blocks, snippets, highlight.js, highlighter, php, js, sourcecode, code
-Requires at least: 5.0
-Tested up to: 6.4.2
+Requires at least: 6.0
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 1.0.6
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ Using it will be as straightforward as adding a replacement Vaaky Highlighter So
 = Minimum Requirements =
 
 * PHP 5.6 or greater is recommended
-* WordPress 5.0 or greater is recommended
+* WordPress 6.0 or greater is recommended
 
 = Automatic installation =
 
@@ -97,7 +97,7 @@ It uses [Highlight.js](https://github.com/highlightjs/highlight.js)
 
 = What is the theme it supports =
 
-Currently, it supports 25 themes out of which 16 are the dark theme which includes Monokai (Sublime), Visual Studio, GitHub Dark, Android Studio, etc. and 9 are the light themes which include Github, StackOverflow, Google Code, etc.
+Currently, it supports 30 themes out of which 20 are dark themes which include Monokai (Sublime), Visual Studio 2015, GitHub Dark, Android Studio, Tokyo Night Dark, Rose Pine, Nord, etc. and 10 are light themes which include GitHub, StackOverflow Light, Google Code, Tokyo Night Light, Rose Pine Dawn, etc.
 
 = How an add a language that is not supported by you but supported by highlightjs =
 
@@ -125,15 +125,16 @@ If you know the abbreviation of the language then you can provide in `lang` attr
 
 == Changelog ==
 
+= 1.1.0 2026-01-10 =
+* Changed - Updated WordPress compatibility to 6.9
+* Changed - Upgraded Highlight.js from v11.2.0 to v11.11.1
+* Changed - Added support for 24 additional languages
+* Changed - Added 6 new themes (Tokyo Night, Rose Pine, Nord)
+* Changed - Updated all existing themes to v11.11.1
+* Fix - WordPress.org compatibility warning
+
 = 1.0.6 2024-01-01 =
 * Fix - declare $settingOptionGroup in Settings.php to silence deprecated message [6457d69](https://github.com/finallyRaunak/vaaky-highlighter/commit/6457d698f091e2c8cbdf76896004875a561f988c)
-* Tested and updated WordPress compatibility with new version
-
-= 1.0.5 2023-09-09 =
-* Fix - Notice: Trying to access array offset on value of type bool
-* Tested and updated WordPress compatibility with new version
-
-= 1.0.4 2023-05-05 =
 * Tested and updated WordPress compatibility with new version
 
 [See the changelog for all versions](https://github.com/finallyRaunak/vaaky-highlighter/blob/main/CHANGELOG.md).

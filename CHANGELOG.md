@@ -1,5 +1,14 @@
 # Vaaky Highlighter - Changelog
 
+### 1.1.0 &#8594; 2026-01-10
+
+- Changed - Updated WordPress compatibility to 6.9
+- Changed - Upgraded Highlight.js from v11.2.0 to v11.11.1
+- Changed - Added support for 24 additional languages (Bash, C, C#, C++, CSS, Go, HTML/XML, JSON, Java, JavaScript, Markdown, Objective C, PHP, Plaintext, Python, R, Ruby, Rust, SCSS, SQL/MySQL, Shell, TypeScript, YAML)
+- Changed - Added 6 new themes: Tokyo Night Dark/Light, Rose Pine (3 variants), Nord
+- Changed - Updated all 24 existing themes to v11.11.1
+- Fix - WordPress.org compatibility warning for recent WordPress versions
+
 ### 1.0.6 &#8594; 2024-01-01
 
 - Fix - declare $settingOptionGroup in Settings.php to silence deprecated message [6457d69](https://github.com/finallyRaunak/vaaky-highlighter/commit/6457d698f091e2c8cbdf76896004875a561f988c)
