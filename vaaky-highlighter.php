@@ -1,23 +1,23 @@
 <?php
 
 /**
- * Vaaky Highlighter
- * 
+ * Vaaky Highlighter - Syntax Highlighter for Gutenberg
+ *
  * @since             1.0.0
  * @package           VaakyHighlighter
  *
  * @wordpress-plugin
- * Plugin Name:       Vaaky Highlighter
- * Plugin URI:        https://wordpress.org/plugin/vaaky-highlighter
- * Description:       Simple yet elegant syntax or code highlighter based on highlight.js. It allows you to add engaging snippet code blocks.
+ * Plugin Name:       Vaaky Highlighter - Syntax Highlighter for Gutenberg
+ * Plugin URI:        https://wordpress.org/plugins/vaaky-highlighter/
+ * Description:       Lightweight syntax highlighter for Gutenberg powered by Highlight.js. Add fast, beautiful, and responsive code blocks with automatic language detection.
  * Version:           1.1.0
  * Author:            Raunak Gupta
  * Author URI:        https://www.webhat.in/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       vaaky-highlighter
- * Domain Path:       /Languages
- * Requires PHP: 5.6
+ * Domain Path:       /languages
+ * Requires PHP:      5.6
  */
 
 namespace VaakyHighlighter;
