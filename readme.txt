@@ -1,7 +1,7 @@
-=== Vaaky Highlighter ===
+=== Vaaky Highlighter - Syntax Highlighter for Gutenberg ===
 Contributors: raunak01
 Donate link: https://www.webhat.in/
-Tags: syntax highlighter, gutenberg, blocks, snippets, highlight.js, highlighter, php, js, sourcecode, code
+Tags: syntax highlighter, highlight.js, code blocks, gutenberg, snippets
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 5.6
@@ -9,51 +9,55 @@ Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Simple yet elegant syntax or code highlighter based on highlight.js. It allows you to add engaging snippet code blocks.
+Lightweight syntax highlighter plugin for WordPress Gutenberg powered by Highlight.js. Add beautiful, fast, and responsive code blocks with ease.
 
 == Description ==
 
-Vaaky Highlighter is a free, easy-to-use, syntax highlighting tool for WordPress. Highlighting is powered by the [Highlight.js](https://github.com/highlightjs/highlight.js) javaScript syntax highlighter with language auto-detection and zero dependencies.
+Vaaky Highlighter is a lightweight **syntax highlighter plugin for WordPress Gutenberg**.
+It allows you to add clean, readable, and visually appealing **code blocks and code snippets** with automatic language detection.
 
-Using it will be as straightforward as adding a replacement Vaaky Highlighter Sourcecode block (Gutenberg) and insert the code that you wish to highlight: Vaaky Highlighter takes care of the rest!
+Syntax highlighting is powered by **Highlight.js**, a fast and dependency-free JavaScript library that supports multiple programming languages and themes.
 
-**Here is the [demo page](https://www.webhat.in/?page_id=626&utm_source=wordpress.org&utm_medium=readme.txt&utm_campaign=link&utm_id=vaaky_highlighter&utm_term=Theme+Demo) of all the supported themes.**
+Vaaky Highlighter is ideal for **developers, bloggers, technical writers, and documentation sites** who want elegant syntax-highlighted code without unnecessary bloat.
+
+Using it is simple: add the **Vaaky Highlighter Sourcecode block** in Gutenberg, paste your code, and publish — the plugin handles everything automatically.
+
+**View the live demo of all supported themes:**
+[Demo Page](https://www.webhat.in/?page_id=626&utm_source=wordpress.org&utm_medium=readme.txt&utm_campaign=link&utm_id=vaaky_highlighter&utm_term=Theme+Demo)
 
 == Installation ==
 
 = Minimum Requirements =
 
-* PHP 5.6 or greater is recommended
-* WordPress 6.0 or greater is recommended
+* WordPress 6.0 or higher
+* PHP 5.6 or higher
 
-= Automatic installation =
+= Automatic Installation =
 
-Automatic installation is that the best choice -- WordPress can handle the file transfer, and you won’t have to be compelled to leave your browser.
+1. Go to **Plugins → Add New** in your WordPress dashboard
+2. Search for **Vaaky Highlighter**
+3. Click **Install Now**
+4. Activate the plugin
 
-1. Go to "Plugins" in your WordPress dashboard
-1. Click on "Add New"
-1. Type "Vaaky Highlighter" in the search field
-1. Click “Search Plugins.”
-1. Once you’ve found us,  you can view details about it such as the point release, rating, and description. Most importantly, of course, you can install it by clicking "Install" and WordPress will take it from there.
-1. Click on Activate
+= Manual Installation =
 
-= Manual installation =
+1. Download the plugin ZIP file
+2. Go to **Plugins → Add New**
+3. Click **Upload Plugin**
+4. Upload the ZIP file and activate
 
-1. Download the plugin archive
-1. Go to "Plugins" in your WordPress dashboard
-1. Click on "Add New"
-1. Upload Vaaky Highlighter archive
-1. Activate the plugin
+For help, see the official WordPress guide:
+https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation
 
-Having issue? Check the WordPress codex contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+== Usage ==
 
-=== Usage ==
-1. Add a Vaaky Highlighter block within your content
-1. Write your code
-1. Select the language (optional)
-1. Save the post/page and check your in frontend
+1. Add the **Vaaky Highlighter** block in the Gutenberg editor
+2. Paste or write your code
+3. Select a language (optional)
+4. Save and view your page on the frontend
 
-== Supported languages ==
+== Supported Languages ==
+
 - Apache
 - Bash
 - C
@@ -65,15 +69,14 @@ Having issue? Check the WordPress codex contains [instructions on how to do this
 - Django
 - Dockerfile
 - Go
-- HTML
-- XML
+- HTML / XML
 - Handlebars
 - JSON
 - Java
 - JavaScript
 - Markdown
 - Nginx
-- Objective C
+- Objective-C
 - PHP
 - Plaintext
 - PostgreSQL & PL/pgSQL
@@ -83,62 +86,77 @@ Having issue? Check the WordPress codex contains [instructions on how to do this
 - Ruby
 - Rust
 - SCSS
-- SQL/MySQL
+- SQL / MySQL
 - Shell
 - Twig
 - TypeScript
-- YAML/YML
+- YAML / YML
 
 == Frequently Asked Questions ==
 
-= What library does this plugin use?
+= Does Vaaky Highlighter work with Gutenberg? =
 
-It uses [Highlight.js](https://github.com/highlightjs/highlight.js)
+Yes. Vaaky Highlighter is built specifically for the Gutenberg block editor and integrates seamlessly as a custom code block.
 
-= What is the theme it supports =
+= Which syntax highlighting library does this plugin use? =
 
-Currently, it supports 30 themes out of which 20 are dark themes which include Monokai (Sublime), Visual Studio 2015, GitHub Dark, Android Studio, Tokyo Night Dark, Rose Pine, Nord, etc. and 10 are light themes which include GitHub, StackOverflow Light, Google Code, Tokyo Night Light, Rose Pine Dawn, etc.
+Vaaky Highlighter uses **Highlight.js** with automatic language detection.
 
-= How an add a language that is not supported by you but supported by highlightjs =
+= What themes are supported? =
 
-In that case, do not select any language from dropdown, highlightjs will auto-detect the language. If it still didn't work you can request for a [feature request](https://github.com/finallyRaunak/vaaky-highlighter/issues)
+The plugin supports **30 syntax highlighting themes**, including:
 
-= Does it has line number =
+Dark themes:
+Monokai (Sublime), Visual Studio 2015, GitHub Dark, Android Studio, Tokyo Night Dark, Rose Pine, Nord
 
-No
+Light themes:
+GitHub, StackOverflow Light, Google Code, Tokyo Night Light, Rose Pine Dawn
 
-= Does it support Classic Editor? If yes then how to add the code snippet? =
+= How can I highlight a language that is not listed? =
 
-Yes, it will work in WordPress Classic Editor. You have to add it in the form of shortcode, like this `[vaakyHighlighterCode lang="php"] Write your code here.[/vaakyHighlighterCode]`.
-If you know the abbreviation of the language then you can provide in `lang` attribute like php or js or cpp else ignore the attribute all together plugin will auto-detect the language and will highlight based on that.
+Leave the language selection empty. Highlight.js will automatically detect the language.
+If detection fails, you can request support via GitHub:
+https://github.com/finallyRaunak/vaaky-highlighter/issues
+
+= Does the plugin support line numbers? =
+
+No, line numbers are not supported at this time.
+
+= Does Vaaky Highlighter work with the Classic Editor? =
+
+Yes. You can use the shortcode:
+
+`[vaakyHighlighterCode lang="php"]Your code here[/vaakyHighlighterCode]`
+
+The `lang` attribute is optional. If omitted, the language will be auto-detected.
 
 == Screenshots ==
 
-1. Plugin Settings Page
-2. Visual Studio 2015 Theme: JavaScript Snippet
-3. Visual Studio 2015 Theme: PHP Snippet
-4. Visual Studio 2015 Theme: YAML Snippet
-5. Sublime (Monokai) Theme: JavaScript Snippet
-6. Sublime (Monokai) Theme: YAML Snippet
-7. Sublime (Monokai) Theme: PHP Snippet with Scrollbar
-8. Sublime (Monokai) Theme: PHP Snippet with Line Wrap
+1. Gutenberg syntax highlighter block
+2. Visual Studio 2015 theme - JavaScript code snippet
+3. Visual Studio 2015 theme - PHP code snippet
+4. Visual Studio 2015 theme - YAML code snippet
+5. Monokai (Sublime) theme - JavaScript code snippet
+6. Monokai (Sublime) theme - YAML code snippet
+7. Monokai (Sublime) theme - PHP snippet with scrollbar
+8. Monokai (Sublime) theme - PHP snippet with line wrapping
 
 == Changelog ==
 
-= 1.1.0 2026-01-10 =
-* Changed - Updated WordPress compatibility to 6.9
-* Changed - Upgraded Highlight.js from v11.2.0 to v11.11.1
-* Changed - Added support for 24 additional languages
-* Changed - Added 6 new themes (Tokyo Night, Rose Pine, Nord)
-* Changed - Updated all existing themes to v11.11.1
-* Fix - WordPress.org compatibility warning
+= 1.1.0 - 2026-01-10 =
+* Updated WordPress compatibility to 6.9
+* Upgraded Highlight.js from v11.2.0 to v11.11.1
+* Added support for 24 additional languages
+* Added new themes: Tokyo Night, Rose Pine, Nord
+* Updated all existing themes
+* Fixed WordPress.org compatibility warnings
 
-= 1.0.6 2024-01-01 =
-* Fix - declare $settingOptionGroup in Settings.php to silence deprecated message [6457d69](https://github.com/finallyRaunak/vaaky-highlighter/commit/6457d698f091e2c8cbdf76896004875a561f988c)
-* Tested and updated WordPress compatibility with new version
+= 1.0.6 - 2024-01-01 =
+* Fixed deprecated settings notice
+* Tested with latest WordPress version
 
 [See the changelog for all versions](https://github.com/finallyRaunak/vaaky-highlighter/blob/main/CHANGELOG.md).
 
 == Upgrade Notice ==
 
-There isn't any upgrade notice at this point.
+No special upgrade steps are required.
