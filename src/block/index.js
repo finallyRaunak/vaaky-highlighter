@@ -57,6 +57,11 @@ function htmlEntities(str) {
         .replace(/"/g, '&quot;');
 }
 
+const globalDefaults = (typeof window !== 'undefined' && window.vaakyDefaults) || {
+    showLineNumbers: false,
+    wordWrap: false,
+};
+
 registerBlockType(metadata.name, {
     edit: (props) => {
         const blockProps = useBlockProps({ className: 'vaaky-highlighter-editor' });
@@ -64,6 +69,13 @@ registerBlockType(metadata.name, {
             attributes: { content, language, filename, showLineNumbers, wordWrap },
             setAttributes,
         } = props;
+
+        const effectiveLineNumbers = typeof showLineNumbers === 'boolean'
+            ? showLineNumbers
+            : !!globalDefaults.showLineNumbers;
+        const effectiveWrap = typeof wordWrap === 'boolean'
+            ? wordWrap
+            : !!globalDefaults.wordWrap;
 
         return (
             <div {...blockProps}>
@@ -83,15 +95,23 @@ registerBlockType(metadata.name, {
                         />
                         <ToggleControl
                             label={__('Show line numbers', 'vaaky-highlighter')}
-                            checked={!!showLineNumbers}
+                            checked={effectiveLineNumbers}
                             onChange={(value) => setAttributes({ showLineNumbers: value })}
-                            help={__('Leave off to use the global default.', 'vaaky-highlighter')}
+                            help={
+                                typeof showLineNumbers === 'boolean'
+                                    ? __('Overrides the global default for this block.', 'vaaky-highlighter')
+                                    : __('Reflecting the global default from Settings.', 'vaaky-highlighter')
+                            }
                         />
                         <ToggleControl
                             label={__('Word wrap', 'vaaky-highlighter')}
-                            checked={!!wordWrap}
+                            checked={effectiveWrap}
                             onChange={(value) => setAttributes({ wordWrap: value })}
-                            help={__('Wrap long lines instead of scrolling.', 'vaaky-highlighter')}
+                            help={
+                                typeof wordWrap === 'boolean'
+                                    ? __('Overrides the global default for this block.', 'vaaky-highlighter')
+                                    : __('Reflecting the global default from Settings.', 'vaaky-highlighter')
+                            }
                         />
                     </PanelBody>
                 </InspectorControls>

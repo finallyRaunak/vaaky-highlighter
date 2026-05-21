@@ -77,7 +77,27 @@ class Admin
             add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'), 10);
             add_action('admin_notices', array($this, 'maybeShowReviewNotice'));
             add_action('wp_ajax_vaaky_review_notice', array($this, 'handleReviewNoticeAjax'));
+            add_action('enqueue_block_editor_assets', array($this, 'localizeBlockDefaults'));
         }
+    }
+
+    /**
+     * Pass the plugin's global defaults to the block editor so the per-block
+     * inspector toggles can visually reflect the current global state.
+     *
+     * @since 1.2.0
+     */
+    public function localizeBlockDefaults()
+    {
+        $handle = 'vaaky-highlighter-code-khand-editor-script';
+        if (!wp_script_is($handle, 'registered')) {
+            return;
+        }
+        $payload = wp_json_encode(array(
+            'showLineNumbers' => (bool) $this->settings->getDefaultLineNumbers(),
+            'wordWrap'        => (bool) $this->settings->getDefaultWordWrap(),
+        ));
+        wp_add_inline_script($handle, 'window.vaakyDefaults = ' . $payload . ';', 'before');
     }
 
     /**
