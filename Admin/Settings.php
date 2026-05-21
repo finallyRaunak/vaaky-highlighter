@@ -88,6 +88,16 @@ class Settings extends SettingsBase
     private $textOverflowId;
     private $codeCopyBtnId;
     private $allowAttributionBtnId;
+    private $defaultLineNumbersId;
+    private $defaultWordWrapId;
+
+    /**
+     * General settings' section for block defaults.
+     *
+     * @since    1.2.0
+     * @var string
+     */
+    private $defaultsSettingsSectionId;
 
     /**
      * Initialize the class and set its properties.
@@ -118,6 +128,14 @@ class Settings extends SettingsBase
 
         $this->codeCopyBtnId         = 'code-copy-btn-toolbar' . self::CHECKBOX_SUFFIX;
         $this->allowAttributionBtnId = 'attribution-btn-toolbar' . self::CHECKBOX_SUFFIX;
+
+        /**
+         * Defaults Config
+         */
+        $this->defaultsSettingsSectionId = $pluginSlug . '-defaults-section';
+
+        $this->defaultLineNumbersId = 'default-line-numbers-defaults' . self::CHECKBOX_SUFFIX;
+        $this->defaultWordWrapId    = 'default-word-wrap-defaults' . self::CHECKBOX_SUFFIX;
     }
 
     /**
@@ -235,6 +253,13 @@ class Settings extends SettingsBase
 
         add_settings_field($this->allowAttributionBtnId, __('Attribution Button', 'vaaky-highlighter'), array($this, 'checkboxAttributionBtnCallback'), $this->settingsPage, $this->toolbarSettingsSectionId, array('label_for' => $this->allowAttributionBtnId));
 
+        //Defaults Section
+        add_settings_section($this->defaultsSettingsSectionId, __('Block Defaults', 'vaaky-highlighter'), array(), $this->settingsPage);
+
+        add_settings_field($this->defaultLineNumbersId, __('Show Line Numbers', 'vaaky-highlighter'), array($this, 'checkboxDefaultLineNumbersCallback'), $this->settingsPage, $this->defaultsSettingsSectionId, array('label_for' => $this->defaultLineNumbersId));
+
+        add_settings_field($this->defaultWordWrapId, __('Word Wrap', 'vaaky-highlighter'), array($this, 'checkboxDefaultWordWrapCallback'), $this->settingsPage, $this->defaultsSettingsSectionId, array('label_for' => $this->defaultWordWrapId));
+
         $registerSettingArguments = array(
             'type'              => 'array',
             'description'       => '',
@@ -279,7 +304,9 @@ class Settings extends SettingsBase
             $this->themeId               => 'github',
             $this->textOverflowId        => 'scrollbar',
             $this->codeCopyBtnId         => 1,
-            $this->allowAttributionBtnId => 1
+            $this->allowAttributionBtnId => 1,
+            $this->defaultLineNumbersId  => 1,
+            $this->defaultWordWrapId     => 0
         );
     }
 
@@ -305,6 +332,24 @@ class Settings extends SettingsBase
     {
         $this->settingOptions = $this->getSettingOptions();
         return (bool) !empty($this->settingOptions[$this->allowAttributionBtnId]) ? $this->settingOptions[$this->allowAttributionBtnId] : false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDefaultLineNumbers()
+    {
+        $this->settingOptions = $this->getSettingOptions();
+        return (bool) (isset($this->settingOptions[$this->defaultLineNumbersId]) ? $this->settingOptions[$this->defaultLineNumbersId] : true);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDefaultWordWrap()
+    {
+        $this->settingOptions = $this->getSettingOptions();
+        return (bool) (isset($this->settingOptions[$this->defaultWordWrapId]) ? $this->settingOptions[$this->defaultWordWrapId] : false);
     }
 
 }

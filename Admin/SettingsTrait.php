@@ -100,7 +100,7 @@ trait SettingsTrait
     public function radioOverflowCallback()
     {
         $checked = (!empty($this->settingOptions[$this->textOverflowId])) ? $this->settingOptions[$this->textOverflowId] : 'new-line';
-        
+
         $html    = sprintf('<input type="radio" id="radio-overflow-one" name="%s[%s]" value="new-line" %s />', $this->settingOptionName, $this->textOverflowId, checked($checked, 'new-line', false));
         $html    .= '&nbsp;';
         $html    .= '<label for="radio-overflow-one">' . __('New Line/Line Break', 'vaaky-highlighter') . '</label>';
@@ -109,6 +109,30 @@ trait SettingsTrait
         $html    .= '&nbsp;';
         $html    .= '<label for="radio-overflow-two">' . __('Show Scrollbar', 'vaaky-highlighter') . '</label>';
         $html    .= '<p class="description">' . __('Set the text/code wrapping behaviour: line break or scrollbar.', 'vaaky-highlighter') . '</p>';
+
+        echo $html;
+    }
+
+    public function checkboxDefaultLineNumbersCallback()
+    {
+        $checked = (!empty($this->settingOptions[$this->defaultLineNumbersId])) ? 1 : 0;
+
+        $html = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->defaultLineNumbersId, $this->settingOptionName, $this->defaultLineNumbersId, checked($checked, true, false));
+        $html .= '&nbsp;';
+        $html .= sprintf('<label for="%s">%s</label>', $this->defaultLineNumbersId, __('Show line numbers by default', 'vaaky-highlighter'));
+        $html .= '<p class="description">' . __('When enabled, line numbers are shown on code blocks unless the block overrides this setting.', 'vaaky-highlighter') . '</p>';
+
+        echo $html;
+    }
+
+    public function checkboxDefaultWordWrapCallback()
+    {
+        $checked = (!empty($this->settingOptions[$this->defaultWordWrapId])) ? 1 : 0;
+
+        $html = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->defaultWordWrapId, $this->settingOptionName, $this->defaultWordWrapId, checked($checked, true, false));
+        $html .= '&nbsp;';
+        $html .= sprintf('<label for="%s">%s</label>', $this->defaultWordWrapId, __('Enable word wrap by default', 'vaaky-highlighter'));
+        $html .= '<p class="description">' . __('When enabled, long lines of code wrap instead of showing a horizontal scrollbar, unless the block overrides this setting.', 'vaaky-highlighter') . '</p>';
 
         echo $html;
     }
