@@ -140,13 +140,11 @@ The `lang` attribute is optional. If omitted, the language will be auto-detected
 
 == Screenshots ==
 
-1. Code block with syntax highlighting — Atom One Dark theme
-2. Block settings in the Gutenberg editor
-3. Line numbers and floating copy button (new in 1.2)
-4. Filename label tab above the code block (new in 1.2)
-5. Visual theme picker in plugin settings (new in 1.2)
-6. Settings page overview
-7. Frontend rendering on a developer blog post
+1. Frontend code block with syntax highlighting, filename tab, line numbers, and floating copy button
+2. Block inspector — language, filename, line numbers, and word-wrap controls in the Gutenberg sidebar
+3. Visual theme picker with live previews of 35+ themes
+4. Plugin settings — appearance and block defaults
+5. Frontend rendering on a developer blog post
 
 == Changelog ==
 
@@ -168,10 +166,6 @@ The `lang` attribute is optional. If omitted, the language will be auto-detected
 * Added new themes: Tokyo Night, Rose Pine, Nord
 * Updated all existing themes
 * Fixed WordPress.org compatibility warnings
-
-= 1.0.6 - 2024-01-01 =
-* Fixed deprecated settings notice
-* Tested with latest WordPress version
 
 [See the changelog for all versions](https://github.com/finallyRaunak/vaaky-highlighter/blob/main/CHANGELOG.md).
 
