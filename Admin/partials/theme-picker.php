@@ -34,10 +34,10 @@ $sampleHtml = '<pre><code class="hljs language-javascript">'
         $previewDoc  = '<!DOCTYPE html><html><head><meta charset="utf-8">'
             . '<link rel="stylesheet" href="' . $themeCssUrl . '">'
             . '<style>'
-            . 'html,body{margin:0;padding:0;height:100%;overflow:hidden;}'
-            . 'pre{margin:0;padding:10px;height:100%;box-sizing:border-box;font-size:11px;line-height:1.4;'
-            . 'font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow:hidden;}'
-            . 'code.hljs{display:block;background:transparent;}'
+            . 'html,body{margin:0;padding:0;height:100%;overflow:hidden;font-size:11px;line-height:1.45;'
+            . 'font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}'
+            . 'pre{margin:0;height:100%;box-sizing:border-box;overflow:hidden;}'
+            . 'pre code.hljs{display:block;height:100%;padding:10px;box-sizing:border-box;overflow:hidden;}'
             . '</style></head><body>' . $sampleHtml . '</body></html>';
     ?>
         <label class="vaaky-theme-card<?php echo ($slug === $currentTheme) ? ' is-selected' : ''; ?>">
