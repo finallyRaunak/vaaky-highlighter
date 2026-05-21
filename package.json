@@ -1,31 +1,17 @@
 {
-  "name": "vaaky-blocks",
-  "version": "1.1.0",
-  "license": "MIT",
-  "main": "Admin/js/block.js",
+  "name": "vaaky-highlighter",
+  "version": "1.2.0",
+  "license": "GPL-2.0+",
+  "private": true,
   "scripts": {
-    "dev": "cross-env webpack --watch",
-    "build": "cross-env NODE_ENV=production webpack -p"
+    "build": "wp-scripts build src/block/index.js",
+    "start": "wp-scripts start src/block/index.js",
+    "lint:js": "wp-scripts lint-js src",
+    "lint:css": "wp-scripts lint-style 'src/**/*.scss' 'src/**/*.css'",
+    "format": "wp-scripts format src",
+    "packages-update": "wp-scripts packages-update"
   },
   "devDependencies": {
-    "@wordpress/babel-preset-default": "^3.0.2",
-    "babel-core": "^6.25.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.5",
-    "classnames": "^2.2.5",
-    "cross-env": "^5.1.4",
-    "css-loader": "^2.1.0",
-    "eslint": "^5.12.1",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "node-sass": "^4.8.3",
-    "postcss-loader": "^3.0.0",
-    "raw-loader": "^1.0.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.29.0",
-    "webpack-cli": "^3.2.1"
-  },
-  "dependencies": {
-    "autoprefixer": "^9.4.6"
+    "@wordpress/scripts": "^27.0.0"
   }
 }

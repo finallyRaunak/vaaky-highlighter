@@ -69,11 +69,12 @@ class Admin
      */
     public function initializeHooks($isAdmin)
     {
+        add_action('init', array($this, 'registerBlock'));
+
         // Admin
         if ($isAdmin)
         {
             add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'), 10);
-            add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'), 10);
         }
     }
 
@@ -101,26 +102,13 @@ class Admin
     }
 
     /**
-     * Register the JavaScript for the admin area.
+     * Register the Gutenberg block via block.json.
      *
-     * @since   1.0.0
-     * @param   string  $hook    A screen id to filter the current admin page
+     * @since   1.2.0
      */
-    public function enqueueScripts($hook)
+    public function registerBlock()
     {
-        $scriptId = $this->pluginSlug . '-gutenberg';
-
-        $scriptUrl = plugin_dir_url(__FILE__) . 'js/gutenberg.js';
-        if (wp_register_script($scriptId, $scriptUrl, array('wp-blocks', 'wp-editor'), $this->version, true) === false)
-        {
-            exit(esc_html__('Script could not be registered: ', 'vaaky-highlighter') . $scriptUrl);
-        }
-
-        /**
-         * If you enque the script here, it will be loaded on every Admin page.
-         * To load only on a certain page, use the $hook.
-         */
-        wp_enqueue_script($scriptId);
+        register_block_type(plugin_dir_path(dirname(__FILE__)));
     }
 
 }

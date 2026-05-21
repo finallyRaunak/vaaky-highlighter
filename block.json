@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "vaaky-highlighter/code-khand",
+    "version": "1.2.0",
+    "title": "Vaaky Highlighter",
+    "category": "common",
+    "icon": "editor-code",
+    "description": "Syntax-highlighted code block powered by Highlight.js.",
+    "textdomain": "vaaky-highlighter",
+    "keywords": ["code", "syntax", "highlight", "snippet"],
+    "supports": { "html": false },
+    "attributes": {
+        "content":  { "type": "string", "default": "//Write your code here!" },
+        "language": { "type": "string", "default": "" }
+    },
+    "editorScript": "file:./build/index.js"
+}

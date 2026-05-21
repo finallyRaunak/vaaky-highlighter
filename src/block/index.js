@@ -1,14 +1,16 @@
-const { __ } = wp.i18n;
-const { RawHTML } = wp.element;
-const { registerBlockType } = wp.blocks;
-const { PanelBody, SelectControl, TextareaControl } = wp.components;
-const { InspectorControls, useBlockProps } = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import { registerBlockType } from '@wordpress/blocks';
+import { RawHTML } from '@wordpress/element';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, TextareaControl } from '@wordpress/components';
+import metadata from '../../block.json';
 
 const blockStyle = {
     backgroundColor: '#d8d3d6',
     color: '#000000',
-    padding: '20px'
+    padding: '20px',
 };
+
 const languages = [
     { label: __('Select a language', 'vaaky-highlighter'), value: '' },
     { label: 'Apache', value: 'apache' },
@@ -21,7 +23,7 @@ const languages = [
     { label: 'DOS', value: 'dos' },
     { label: 'Django', value: 'django' },
     { label: 'Dockerfile', value: 'dockerfile' },
-    { label: 'Go', value: 'golang' },
+    { label: 'Go', value: 'go' },
     { label: 'HTML', value: 'html' },
     { label: 'XML', value: 'xml' },
     { label: 'Handlebars', value: 'handlebars' },
@@ -30,10 +32,10 @@ const languages = [
     { label: 'JavaScript', value: 'javascript' },
     { label: 'Markdown', value: 'markdown' },
     { label: 'Nginx', value: 'nginx' },
-    { label: 'Objective C', value: 'objectivec' },
+    { label: 'Objective-C', value: 'objectivec' },
     { label: 'PHP', value: 'php' },
     { label: 'Plaintext', value: 'plaintext' },
-    { label: 'PostgreSQL & PL/pgSQL', value: 'pgsql' },
+    { label: 'PostgreSQL', value: 'pgsql' },
     { label: 'PowerShell', value: 'powershell' },
     { label: 'Python', value: 'python' },
     { label: 'R', value: 'r' },
@@ -44,45 +46,35 @@ const languages = [
     { label: 'Shell', value: 'shell' },
     { label: 'Twig', value: 'twig' },
     { label: 'TypeScript', value: 'typescript' },
-    { label: 'YAML/YML', value: 'yaml' }
+    { label: 'YAML', value: 'yaml' },
 ];
 
-registerBlockType('vaaky-highlighter/code-khand', {
-    title: __('Vaaky Highlighter', 'vaaky-highlighter'),
-    icon: 'editor-code',
-    category: 'common',
-    attributes: {
-        content: {
-            type: "string",
-            default: '//Write your code here!',
-        },
-        language: {
-            type: "string",
-            default: ""
-        }
-    },
-    example: {},
-    keywords: [__('code', 'vaaky-highlighter'), __('syntax', 'vaaky-highlighter'), __('vaaky', 'vaaky-highlighter'), __('sourcecode', 'vaaky-highlighter'), __('format', 'vaaky-highlighter'), __('snippet', 'vaaky-highlighter')],
+function htmlEntities(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
 
+registerBlockType(metadata.name, {
     edit: (props) => {
         const blockProps = useBlockProps({ style: blockStyle, className: 'vaaky-highlighter' });
         const {
             attributes: { content, language },
             setAttributes,
-            className
+            className,
         } = props;
 
         return (
             <div className={className} {...blockProps}>
                 <InspectorControls>
-                    <PanelBody
-                        title={__('Vaaky Highlighter Settings', 'vaaky-highlighter')}
-                    >
+                    <PanelBody title={__('Vaaky Highlighter Settings', 'vaaky-highlighter')}>
                         <SelectControl
                             label={__('Language', 'vaaky-highlighter')}
                             value={language}
                             options={languages}
-                            onChange={value => setAttributes({ language: value })}
+                            onChange={(value) => setAttributes({ language: value })}
                         />
                     </PanelBody>
                 </InspectorControls>
@@ -90,7 +82,7 @@ registerBlockType('vaaky-highlighter/code-khand', {
                 <TextareaControl
                     label="Code Snippet"
                     value={content}
-                    onChange={value => setAttributes({ content: value })}
+                    onChange={(value) => setAttributes({ content: value })}
                     rows="10"
                 />
             </div>
@@ -98,17 +90,16 @@ registerBlockType('vaaky-highlighter/code-khand', {
     },
     save: (props) => {
         const {
-            attributes: { content, language }
+            attributes: { content, language },
         } = props;
-        var myShortcode = '[vaakyHighlighterCode lang="' + language + '"]' + htmlEntities(content) + '[/vaakyHighlighterCode]';
+        const shortcode =
+            '[vaakyHighlighterCode lang="' + language + '"]' +
+            htmlEntities(content) +
+            '[/vaakyHighlighterCode]';
         return (
             <div>
-                <RawHTML>{myShortcode}</RawHTML>
+                <RawHTML>{shortcode}</RawHTML>
             </div>
         );
-    }
-})
-
-function htmlEntities(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
+    },
+});
