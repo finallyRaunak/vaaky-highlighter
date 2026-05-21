@@ -6,3 +6,74 @@
 .vaaky-btn:after{border:.125em dashed #000;bottom:-.125em;left:-.125em;right:-.125em;top:-.125em}
 .vaaky-btn:hover:after,.vaaky-btn:focus:after{bottom:.125em;left:.125em;right:.125em;top:.125em}
 .vaaky-line-break{white-space:break-spaces}
+
+/* === v1.2 features === */
+
+.vaaky-highlighter-wrap {
+    position: relative;
+    margin: 1em 0;
+}
+
+.vaaky-highlighter-wrap .vaaky-filename {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #2d2d2d;
+    color: #e6e6e6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85em;
+    border-radius: 4px 4px 0 0;
+    line-height: 1.4;
+}
+
+.vaaky-highlighter-wrap .vaaky-filename + pre {
+    margin-top: 0;
+    border-top-left-radius: 0;
+}
+
+.vaaky-highlighter-wrap pre {
+    position: relative;
+    overflow-x: auto;
+}
+
+.hljs-ln td.hljs-ln-numbers {
+    user-select: none;
+    text-align: right;
+    padding-right: 0.8em;
+    border-right: 1px solid rgba(127, 127, 127, 0.3);
+    opacity: 0.6;
+    width: 2.5em;
+}
+
+.hljs-ln td.hljs-ln-code {
+    padding-left: 0.8em;
+}
+
+.vaaky-line-break {
+    white-space: pre-wrap !important;
+    word-break: break-word;
+}
+
+.vaaky-copy-btn-floating {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    font-size: 0.8em;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 2;
+}
+
+.vaaky-highlighter-wrap:hover .vaaky-copy-btn-floating,
+.vaaky-copy-btn-floating:focus {
+    opacity: 1;
+}
+
+.vaaky-copy-btn-floating.is-copied {
+    background: rgba(46, 160, 67, 0.7);
+}
