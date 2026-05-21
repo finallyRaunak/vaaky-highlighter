@@ -1,27 +1,29 @@
 (function () {
     'use strict';
 
-    function init() {
+    function addButtons() {
         var blocks = document.querySelectorAll('.vaaky-highlighter-wrap');
         blocks.forEach(function (block) {
-            if (block.querySelector('.vaaky-copy-btn-floating')) return;
+            var pre = block.querySelector('pre');
+            if (!pre) return;
+            if (pre.querySelector(':scope > .vaaky-copy-btn-floating')) return;
             var btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'vaaky-copy-btn-floating';
             btn.setAttribute('aria-label', 'Copy code to clipboard');
             btn.textContent = 'Copy';
-            btn.addEventListener('click', function () { handleCopy(btn, block); });
-            block.appendChild(btn);
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                handleCopy(btn, pre);
+            });
+            pre.appendChild(btn);
         });
-
-        if (window.hljs && typeof window.hljs.initLineNumbersOnLoad === 'function') {
-            window.hljs.initLineNumbersOnLoad({ singleLine: true });
-        }
     }
 
-    function handleCopy(btn, block) {
-        var codeEl = block.querySelector('pre code');
+    function handleCopy(btn, pre) {
+        var codeEl = pre.querySelector('code');
         if (!codeEl) return;
+        // hljs-line-numbers injects a <table> — innerText preserves visible text per row
         var text = codeEl.innerText;
         var done = function () {
             var original = btn.textContent;
@@ -50,9 +52,15 @@
         document.body.removeChild(ta);
     }
 
+    // Run after highlight.js has decorated blocks (so line-numbers table is in place
+    // and innerText reads cleanly). core.js dispatches this event after highlightAll().
+    document.addEventListener('vaaky:highlighted', addButtons);
+
+    // Fallback: also run on DOMContentLoaded in case the event already fired
+    // (e.g., scripts loaded out of order) or in case highlightAll runs faster than us.
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', addButtons);
     } else {
-        init();
+        addButtons();
     }
 })();

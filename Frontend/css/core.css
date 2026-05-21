@@ -3,19 +3,26 @@
 /* === v1.2 features === */
 
 .vaaky-highlighter-wrap {
-    position: relative;
     margin: 1em 0;
 }
 
 .vaaky-highlighter-wrap .vaaky-filename {
-    display: inline-block;
-    padding: 4px 12px;
-    background: #2d2d2d;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 5px 14px;
+    background: #1e1e1e;
     color: #e6e6e6;
     font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
     font-size: 0.85em;
-    border-radius: 4px 4px 0 0;
+    border-radius: 6px 6px 0 0;
     line-height: 1.4;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .vaaky-highlighter-wrap .vaaky-filename + pre {
@@ -26,17 +33,29 @@
 .vaaky-highlighter-wrap pre {
     position: relative;
     overflow-x: auto;
+    border-radius: 6px;
 }
 
+.vaaky-highlighter-wrap .vaaky-filename + pre {
+    border-top-left-radius: 0;
+}
+
+/* hljs line-numbers table */
+.hljs-ln {
+    border-collapse: collapse;
+}
+.hljs-ln td {
+    padding: 0;
+}
 .hljs-ln td.hljs-ln-numbers {
     user-select: none;
     text-align: right;
     padding-right: 0.8em;
     border-right: 1px solid rgba(127, 127, 127, 0.3);
-    opacity: 0.6;
+    opacity: 0.55;
     width: 2.5em;
+    white-space: nowrap;
 }
-
 .hljs-ln td.hljs-ln-code {
     padding-left: 0.8em;
 }
@@ -46,27 +65,36 @@
     word-break: break-word;
 }
 
-.vaaky-copy-btn-floating {
+/* Floating copy button — child of <pre>, positioned within it */
+.vaaky-highlighter-wrap pre .vaaky-copy-btn-floating {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 4px 10px;
-    background: rgba(255, 255, 255, 0.1);
+    top: 6px;
+    right: 6px;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.12);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    font-size: 0.8em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.4;
     cursor: pointer;
     opacity: 0;
-    transition: opacity 0.15s ease;
-    z-index: 2;
+    transition: opacity 0.15s ease, background 0.15s ease;
+    z-index: 10;
 }
 
-.vaaky-highlighter-wrap:hover .vaaky-copy-btn-floating,
+.vaaky-highlighter-wrap pre:hover .vaaky-copy-btn-floating,
 .vaaky-copy-btn-floating:focus {
     opacity: 1;
 }
 
+.vaaky-copy-btn-floating:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
 .vaaky-copy-btn-floating.is-copied {
-    background: rgba(46, 160, 67, 0.7);
+    background: rgba(46, 160, 67, 0.85);
+    border-color: rgba(46, 160, 67, 0.9);
+    opacity: 1;
 }
