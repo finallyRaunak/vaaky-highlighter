@@ -128,12 +128,28 @@ class Frontend
         $scriptId  = $this->pluginSlug . '-hljs';
         $scriptUrl = $scriptBaseUrl . 'highlight.min.js';
 
-        $scriptCoreId  = $this->pluginSlug . '-frontend';
-        $scriptCoreUrl = $scriptBaseUrl . 'core.js';
+        $scriptLineNumbersId = $this->pluginSlug . '-line-numbers';
+        $scriptCoreId        = $this->pluginSlug . '-frontend';
+        $scriptCoreUrl       = $scriptBaseUrl . 'core.js';
 
-        if ((wp_register_script($scriptId, $scriptUrl, array('jquery'), $this->version, false) === false) || (wp_register_script($scriptCoreId, $scriptCoreUrl, array($scriptId), $this->version, false) === false))
+        if (wp_register_script($scriptId, $scriptUrl, array('jquery'), $this->version, false) === false)
         {
             exit(esc_html__('Script could not be registered: ', 'vaaky-highlighter') . $scriptUrl);
+        }
+
+        // Line numbers plugin — must load BEFORE core.js so hljs.initLineNumbersOnLoad is defined when core runs.
+        wp_register_script(
+            $scriptLineNumbersId,
+            $scriptBaseUrl . 'line-numbers.min.js',
+            array($scriptId),
+            $this->version,
+            false
+        );
+
+        // core.js — depends on both hljs core and the line-numbers plugin so the load order is deterministic.
+        if (wp_register_script($scriptCoreId, $scriptCoreUrl, array($scriptId, $scriptLineNumbersId), $this->version, false) === false)
+        {
+            exit(esc_html__('Script could not be registered: ', 'vaaky-highlighter') . $scriptCoreUrl);
         }
 
         foreach ($this->extModule as $lang)
@@ -142,17 +158,9 @@ class Frontend
         }
 
         wp_register_script(
-            $this->pluginSlug . '-line-numbers',
-            $scriptBaseUrl . 'line-numbers.min.js',
-            array($scriptId), // depends on hljs core
-            $this->version,
-            true
-        );
-
-        wp_register_script(
             $this->pluginSlug . '-copy-button',
             $scriptBaseUrl . 'copy-button.js',
-            array($scriptCoreId), // depends on plugin core JS
+            array($scriptCoreId),
             $this->version,
             true
         );
@@ -232,8 +240,8 @@ class Frontend
         wp_enqueue_style($this->pluginSlug . '-theme');
         wp_enqueue_style($this->pluginSlug . '-frontend');
 
-        //Loading the scripts
-        wp_enqueue_script($this->pluginSlug . '-hljs');
+        //Loading the scripts — '-line-numbers' is a registered dependency of '-frontend',
+        //so enqueueing '-frontend' transitively enqueues '-hljs' AND '-line-numbers' in the right order.
         wp_enqueue_script($this->pluginSlug . '-frontend');
 
         if (!empty($lang) && in_array($lang, $this->extModule))
@@ -241,9 +249,6 @@ class Frontend
             wp_enqueue_script($this->pluginSlug . '-hljs-' . $lang);
         }
 
-        if ($needLineNumbers) {
-            wp_enqueue_script($this->pluginSlug . '-line-numbers');
-        }
         wp_enqueue_script($this->pluginSlug . '-copy-button');
     }
 
