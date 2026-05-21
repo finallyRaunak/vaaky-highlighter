@@ -48,7 +48,7 @@ require_once plugin_dir_path(__FILE__) . 'Autoloader.php';
 /**
  * Current plugin version.
  */
-define('VAAKY_HIGHLIGHTER_VERSION', '1.1.0');
+define('VAAKY_HIGHLIGHTER_VERSION', '1.2.0');
 
 /**
  * The string used to uniquely identify this plugin.
