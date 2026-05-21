@@ -148,17 +148,46 @@ class Frontend
         $atts      = array_change_key_case((array) $atts, CASE_LOWER);
         $shAtts    = shortcode_atts(
                 array(
-                    'lang' => '',
+                    'lang'        => '',
+                    'filename'    => '',
+                    'linenumbers' => '', // '' = use global default, '0' or '1' = explicit
+                    'wrap'        => '', // '' = use global default, '0' or '1' = explicit
                 ), $atts, $tag
         );
+
+        $showLineNumbers = ($shAtts['linenumbers'] === '')
+            ? $this->settings->getDefaultLineNumbers()
+            : ($shAtts['linenumbers'] === '1');
+
+        $wordWrap = ($shAtts['wrap'] === '')
+            ? $this->settings->getDefaultWordWrap()
+            : ($shAtts['wrap'] === '1');
+
         $overflow  = $this->settings->getTextOverflow();
 
-        $this->enqueueNeededAssets(!empty($shAtts['lang']) ? $shAtts['lang'] : null );
+        $this->enqueueNeededAssets(
+            !empty($shAtts['lang']) ? $shAtts['lang'] : null,
+            $showLineNumbers
+        );
 
         $codeClass[] = ($overflow == 'new-line') ? 'vaaky-line-break' : '';
         $codeClass[] = (!empty($shAtts['lang']) ? ('language-' . $shAtts['lang'] ) : '' );
-        $o           = '<pre>';
-        $o           .= '<code class="' . implode(' ', $codeClass) . '">';
+
+        if ($wordWrap) {
+            $codeClass[] = 'vaaky-line-break';
+        }
+
+        $preClass = [];
+        if ($showLineNumbers) {
+            $preClass[] = 'vaaky-line-numbers';
+        }
+
+        $o = '<div class="vaaky-highlighter-wrap">';
+        if (!empty($shAtts['filename'])) {
+            $o .= '<div class="vaaky-filename">' . esc_html($shAtts['filename']) . '</div>';
+        }
+        $o .= '<pre class="' . esc_attr(implode(' ', array_filter($preClass))) . '">';
+        $o .= '<code class="' . esc_attr(implode(' ', array_filter($codeClass))) . '">';
 
         // enclosing tags
         if (!is_null($content))
@@ -180,6 +209,7 @@ class Frontend
             $o .= '<button class="vaaky-btn vaaky-website-btn" title="' . __('Visit Vaaky Highlighter Website', 'vaaky-highlighter') . '">' . __('Website', 'vaaky-highlighter') . '</button>';
         }
         $o .= '</div>';
+        $o .= '</div>'; // close .vaaky-highlighter-wrap
 
         return $o;
     }
@@ -190,7 +220,7 @@ class Frontend
      * @param string $lang
      * @since 1.0.1
      */
-    private function enqueueNeededAssets($lang = null)
+    private function enqueueNeededAssets($lang = null, $needLineNumbers = false)
     {
         //Loading the style
         wp_enqueue_style($this->pluginSlug . '-theme');
@@ -204,6 +234,11 @@ class Frontend
         {
             wp_enqueue_script($this->pluginSlug . '-hljs-' . $lang);
         }
+
+        if ($needLineNumbers) {
+            wp_enqueue_script($this->pluginSlug . '-line-numbers');
+        }
+        wp_enqueue_script($this->pluginSlug . '-copy-button');
     }
 
 }
