@@ -26,9 +26,6 @@ class SettingsBase
     protected const RADIO_SUFFIX    = '-rb';
     protected const SELECT_SUFFIX   = '-sl';
 
-    public static function whoAmI() {
-        return get_called_class();
-    }
     /**
      * Sanitizes the option's value.
      *

@@ -244,13 +244,6 @@ class Settings extends SettingsBase
         register_setting($this->settingOptionGroup, $this->settingOptionName, $registerSettingArguments);
     }
 
-    public function inputApperanceCallback()
-    {
-        $this->getSettingOptions();
-        echo '<p>' . esc_html__('Settings as stored in the database.', 'vaaky-highlighter') . '</p>';
-        var_dump($this->settingOptions);
-    }
-
     /**
      * Return the config
      * 
