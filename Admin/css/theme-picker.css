@@ -4,11 +4,11 @@
  * h2 sits flush with .wrap. Drop the th padding so every left-column item
  * — section titles AND row labels — starts at the same x-coordinate.
  */
-.vaaky-settings-page .form-table > tbody > tr > th {
+.vaaky-settings-page #post-body-content .form-table > tbody > tr > th {
     padding-left: 0 !important;
 }
-.vaaky-settings-page h2,
-.vaaky-settings-page h3 {
+.vaaky-settings-page #post-body-content > h2,
+.vaaky-settings-page #post-body-content > h3 {
     padding-left: 0 !important;
     margin-left: 0 !important;
 }
