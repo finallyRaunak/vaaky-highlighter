@@ -40,24 +40,55 @@
     border-top-left-radius: 0;
 }
 
-/* hljs line-numbers table */
-.hljs-ln {
-    border-collapse: collapse;
+/*
+ * hljs line-numbers table — defensive reset.
+ * Themes (and many user CSS sheets) target `table, th, td` with borders,
+ * background, font-size, etc. Without an explicit reset those rules paint
+ * every row of the gutter as a spreadsheet cell. We re-establish a clean
+ * baseline on our own table, then layer our own gutter styles on top.
+ */
+.vaaky-highlighter-wrap .hljs-ln,
+.vaaky-highlighter-wrap .hljs-ln tbody,
+.vaaky-highlighter-wrap .hljs-ln tr,
+.vaaky-highlighter-wrap .hljs-ln td {
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    vertical-align: top !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    font-family: inherit !important;
+    color: inherit !important;
+    text-align: left;
 }
-.hljs-ln td {
-    padding: 0;
+
+.vaaky-highlighter-wrap .hljs-ln {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    width: auto !important;
 }
-.hljs-ln td.hljs-ln-numbers {
+
+.vaaky-highlighter-wrap .hljs-ln td.hljs-ln-numbers {
     user-select: none;
-    text-align: right;
-    padding-right: 0.8em;
-    border-right: 1px solid rgba(127, 127, 127, 0.3);
+    text-align: right !important;
+    padding-right: 0.8em !important;
+    border-right: 1px solid rgba(127, 127, 127, 0.3) !important;
     opacity: 0.55;
     width: 2.5em;
     white-space: nowrap;
 }
-.hljs-ln td.hljs-ln-code {
-    padding-left: 0.8em;
+
+.vaaky-highlighter-wrap .hljs-ln td.hljs-ln-code {
+    padding-left: 0.8em !important;
+    white-space: pre;
+}
+
+/* When word-wrap is on, allow code column to wrap; gutter stays nowrap */
+.vaaky-highlighter-wrap pre.vaaky-line-break .hljs-ln td.hljs-ln-code,
+.vaaky-highlighter-wrap code.vaaky-line-break .hljs-ln td.hljs-ln-code {
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .vaaky-line-break {
