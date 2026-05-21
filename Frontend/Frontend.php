@@ -140,6 +140,22 @@ class Frontend
         {
             wp_register_script($this->pluginSlug . '-hljs-' . $lang, $scriptBaseUrl . $lang . '.min.js', array($scriptId), $this->version, false);
         }
+
+        wp_register_script(
+            $this->pluginSlug . '-line-numbers',
+            $scriptBaseUrl . 'line-numbers.min.js',
+            array($scriptId), // depends on hljs core
+            $this->version,
+            true
+        );
+
+        wp_register_script(
+            $this->pluginSlug . '-copy-button',
+            $scriptBaseUrl . 'copy-button.js',
+            array($scriptCoreId), // depends on plugin core JS
+            $this->version,
+            true
+        );
     }
 
     public function codeBlockShortcode($atts = array(), $content = null, $tag = 'vaakyHighlighterCode')
