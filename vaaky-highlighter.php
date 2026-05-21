@@ -10,17 +10,27 @@
  * Plugin Name:       Vaaky Highlighter - Syntax Highlighter for Gutenberg
  * Plugin URI:        https://wordpress.org/plugins/vaaky-highlighter/
  * Description:       Lightweight syntax highlighter for Gutenberg powered by Highlight.js. Add fast, beautiful, and responsive code blocks with automatic language detection.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Author:            Raunak Gupta
  * Author URI:        https://techunfiltered.dev/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       vaaky-highlighter
  * Domain Path:       /languages
- * Requires PHP:      5.6
+ * Requires at least: 6.5
+ * Requires PHP:      7.4
  */
 
 namespace VaakyHighlighter;
+
+if (version_compare(PHP_VERSION, '7.4', '<')) {
+    \add_action('admin_notices', function () {
+        echo '<div class="notice notice-error"><p>',
+             \esc_html__('Vaaky Highlighter requires PHP 7.4 or higher.', 'vaaky-highlighter'),
+             '</p></div>';
+    });
+    return;
+}
 
 use VaakyHighlighter\Includes\Activator;
 use VaakyHighlighter\Includes\Deactivator;

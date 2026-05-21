@@ -2,10 +2,10 @@
 Contributors: raunak01
 Donate link: https://www.webhat.in/
 Tags: syntax highlighter, highlight.js, code blocks, gutenberg, snippets
-Requires at least: 6.0
+Requires at least: 6.5
 Tested up to: 6.9
-Requires PHP: 5.6
-Stable tag: 1.1.0
+Requires PHP: 7.4
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
