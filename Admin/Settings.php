@@ -191,7 +191,7 @@ class Settings extends SettingsBase
         settings_errors($this->pluginSlug);
         ?>
         <!-- Create a header in the default WordPress 'wrap' container -->
-        <div class="wrap">
+        <div class="wrap vaaky-settings-page">
 
             <h2><?php esc_html_e('Vaaky Highlighter', 'vaaky-highlighter'); ?></h2>
 

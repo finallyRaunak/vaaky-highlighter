@@ -1,3 +1,18 @@
+/*
+ * Align section headings (h2) with the form-table label column.
+ * WP's default form-table puts ~10px padding on <th scope="row">, while
+ * h2 sits flush with .wrap. Drop the th padding so every left-column item
+ * — section titles AND row labels — starts at the same x-coordinate.
+ */
+.vaaky-settings-page .form-table > tbody > tr > th {
+    padding-left: 0;
+}
+.vaaky-settings-page h2,
+.vaaky-settings-page h3 {
+    padding-left: 0;
+    margin-left: 0;
+}
+
 .vaaky-theme-picker {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
