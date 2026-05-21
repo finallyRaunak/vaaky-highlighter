@@ -215,16 +215,6 @@ class Frontend
         // end box
         $o .= '</code>';
         $o .= '</pre>';
-        $o .= '<div class="vaaky-toolbar">';
-        if (!empty($this->settings->getCodeCopyBtn()))
-        {
-            $o .= '<button class="vaaky-btn vaaky-copy-btn" title="' . esc_attr__('Copy to Clipboard', 'vaaky-highlighter') . '"><span>' . __('Copy', 'vaaky-highlighter') . '</span></button>';
-        }
-        if (!empty($this->settings->getAttributionBtn()))
-        {
-            $o .= '<button class="vaaky-btn vaaky-website-btn" title="' . esc_attr__('Visit Vaaky Highlighter Website', 'vaaky-highlighter') . '">' . __('Website', 'vaaky-highlighter') . '</button>';
-        }
-        $o .= '</div>';
         $o .= '</div>'; // close .vaaky-highlighter-wrap
 
         return $o;

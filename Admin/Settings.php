@@ -57,7 +57,6 @@ class Settings extends SettingsBase
      * @var string
      */
     private $appearanceSettingsSectionId;
-    private $toolbarSettingsSectionId;
 
     /**
      * @var string General settings page.
@@ -86,8 +85,6 @@ class Settings extends SettingsBase
      */
     private $themeId;
     private $textOverflowId;
-    private $codeCopyBtnId;
-    private $allowAttributionBtnId;
     private $defaultLineNumbersId;
     private $defaultWordWrapId;
 
@@ -120,14 +117,6 @@ class Settings extends SettingsBase
 
         $this->themeId        = 'theme-appearance' . self::SELECT_SUFFIX;
         $this->textOverflowId = 'text-overflow-appearance' . self::RADIO_SUFFIX;
-
-        /**
-         * Toolbar Config
-         */
-        $this->toolbarSettingsSectionId = $pluginSlug . '-toolbar-section';
-
-        $this->codeCopyBtnId         = 'code-copy-btn-toolbar' . self::CHECKBOX_SUFFIX;
-        $this->allowAttributionBtnId = 'attribution-btn-toolbar' . self::CHECKBOX_SUFFIX;
 
         /**
          * Defaults Config
@@ -246,13 +235,6 @@ class Settings extends SettingsBase
 
         add_settings_field($this->textOverflowId, __('Code Overflow', 'vaaky-highlighter'), array($this, 'radioOverflowCallback'), $this->settingsPage, $this->appearanceSettingsSectionId, array('label_for' => $this->textOverflowId));
 
-        //Toolbar Section
-        add_settings_section($this->toolbarSettingsSectionId, __('Toolbar Button', 'vaaky-highlighter'), array(), $this->settingsPage);
-
-        add_settings_field($this->codeCopyBtnId, __('Copy Code', 'vaaky-highlighter'), array($this, 'checkboxCodeCopyBtnCallback'), $this->settingsPage, $this->toolbarSettingsSectionId, array('label_for' => $this->codeCopyBtnId));
-
-        add_settings_field($this->allowAttributionBtnId, __('Attribution Button', 'vaaky-highlighter'), array($this, 'checkboxAttributionBtnCallback'), $this->settingsPage, $this->toolbarSettingsSectionId, array('label_for' => $this->allowAttributionBtnId));
-
         //Defaults Section
         add_settings_section($this->defaultsSettingsSectionId, __('Block Defaults', 'vaaky-highlighter'), array(), $this->settingsPage);
 
@@ -301,12 +283,10 @@ class Settings extends SettingsBase
     private function defaultInputOptions()
     {
         return array(
-            $this->themeId               => 'github',
-            $this->textOverflowId        => 'scrollbar',
-            $this->codeCopyBtnId         => 1,
-            $this->allowAttributionBtnId => 1,
-            $this->defaultLineNumbersId  => 1,
-            $this->defaultWordWrapId     => 0
+            $this->themeId              => 'github',
+            $this->textOverflowId       => 'scrollbar',
+            $this->defaultLineNumbersId => 1,
+            $this->defaultWordWrapId    => 0
         );
     }
 
@@ -320,18 +300,6 @@ class Settings extends SettingsBase
     {
         $this->settingOptions = $this->getSettingOptions();
         return !empty($this->settingOptions[$this->textOverflowId]) ? $this->settingOptions[$this->textOverflowId] : 'scrollbar';
-    }
-
-    public function getCodeCopyBtn()
-    {
-        $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->codeCopyBtnId]) ? $this->settingOptions[$this->codeCopyBtnId] : false;
-    }
-
-    public function getAttributionBtn()
-    {
-        $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->allowAttributionBtnId]) ? $this->settingOptions[$this->allowAttributionBtnId] : false;
     }
 
     /**

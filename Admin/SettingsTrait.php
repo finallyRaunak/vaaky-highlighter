@@ -62,32 +62,6 @@ trait SettingsTrait
         var_dump($this->settingOptions);
     }
 
-    public function checkboxCodeCopyBtnCallback()
-    {
-        $checked = (!empty($this->settingOptions[$this->codeCopyBtnId])) ? 1 : 0;
-
-        $html = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->codeCopyBtnId, $this->settingOptionName, $this->codeCopyBtnId, checked($checked, true, false));
-        $html .= '&nbsp;';
-        $html .= sprintf('<label for="%s">%s</label>', $this->codeCopyBtnId, __('Show Copy Code Button', 'vaaky-highlighter'));
-        $html .= '<p class="description">' . __('Show the copy-to-clipboard button. Works within all modern web browsers.', 'vaaky-highlighter') . '</p>';
-
-        echo $html;
-    }
-
-    public function checkboxAttributionBtnCallback()
-    {
-        $checked = (!empty($this->settingOptions[$this->allowAttributionBtnId])) ? 1 : 0;
-
-        $html = sprintf('<input type="checkbox" id="%s" name="%s[%s]" value="1" %s />', $this->allowAttributionBtnId, $this->settingOptionName, $this->allowAttributionBtnId, checked($checked, true, false));
-        $html .= '&nbsp;';
-
-        $html .= sprintf('<label for="%s">%s</label>', $this->allowAttributionBtnId, __('Show Attribution', 'vaaky-highlighter'));
-        $html .= '<p class="description">' . __('Show Vaaky Highlighter Website link, so that visiter can get to know about our WordPress plugin.', 'vaaky-highlighter') . '</p>';
-        $html .= '<p class="description">' . __('Please keep this option turned on.', 'vaaky-highlighter') . '</p>';
-
-        echo $html;
-    }
-
     public function radioOverflowCallback()
     {
         $checked = (!empty($this->settingOptions[$this->textOverflowId])) ? $this->settingOptions[$this->textOverflowId] : 'new-line';
