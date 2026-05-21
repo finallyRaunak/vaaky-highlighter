@@ -50,7 +50,7 @@ if (!defined('ABSPATH'))
             </li>
             <li>
                 <span class="dashicons dashicons-art"></span>
-                <a target="_blank" href="https://www.webhat.in/?page_id=626&utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=<?= $_SERVER['HTTP_HOST']; ?>&utm_id=vaaky_highlighter&utm_term=Theme+Demo"><?= __('Theme Demo', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.webhat.in/?page_id=626&utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=vaaky_highlighter_admin&utm_id=vaaky_highlighter&utm_term=Theme+Demo"><?php esc_html_e('Theme Demo', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-sos"></span>
@@ -69,12 +69,8 @@ if (!defined('ABSPATH'))
                 <a target="_blank" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Request for a feature', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
-                <span class="dashicons dashicons-facebook"></span>
-                <a target="_blank" href="https://www.facebook.com/webhat.in/"><?= __('Catch us on Facebook', 'vaaky-highlighter'); ?></a>
-            </li>
-            <li>
                 <span class="dashicons dashicons-twitter"></span>
-                <a target="_blank" href="https://twitter.com/webhat14"><?= __('Catch us on Twitter', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://x.com/__RaunakGupta"><?php esc_html_e('Catch us on X', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-wordpress-alt"></span>
@@ -82,7 +78,7 @@ if (!defined('ABSPATH'))
             </li>
             <li>
                 <span class="dashicons dashicons-external"></span>
-                <a target="_blank" href="https://www.webhat.in/?utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=<?= $_SERVER['HTTP_HOST']; ?>&utm_id=vaaky_highlighter&utm_term=Author%27s+Website"><?= __('Author\'s Website', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://techunfiltered.dev/?utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=vaaky_highlighter_admin&utm_id=vaaky_highlighter&utm_term=Author%27s+Website"><?php esc_html_e('Author\'s Website', 'vaaky-highlighter'); ?></a>
             </li>
         </ul>
     </div>
