@@ -11,8 +11,11 @@
     "keywords": ["code", "syntax", "highlight", "snippet"],
     "supports": { "html": false },
     "attributes": {
-        "content":  { "type": "string", "default": "//Write your code here!" },
-        "language": { "type": "string", "default": "" }
+        "content":         { "type": "string", "default": "//Write your code here!" },
+        "language":        { "type": "string", "default": "" },
+        "filename":        { "type": "string", "default": "" },
+        "showLineNumbers": { "type": "boolean" },
+        "wordWrap":        { "type": "boolean" }
     },
     "editorScript": "file:./build/index.js"
 }

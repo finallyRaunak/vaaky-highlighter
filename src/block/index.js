@@ -2,14 +2,14 @@ import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { RawHTML } from '@wordpress/element';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, TextareaControl } from '@wordpress/components';
+import {
+    PanelBody,
+    SelectControl,
+    TextareaControl,
+    TextControl,
+    ToggleControl,
+} from '@wordpress/components';
 import metadata from '../../block.json';
-
-const blockStyle = {
-    backgroundColor: '#d8d3d6',
-    color: '#000000',
-    padding: '20px',
-};
 
 const languages = [
     { label: __('Select a language', 'vaaky-highlighter'), value: '' },
@@ -59,28 +59,48 @@ function htmlEntities(str) {
 
 registerBlockType(metadata.name, {
     edit: (props) => {
-        const blockProps = useBlockProps({ style: blockStyle, className: 'vaaky-highlighter' });
+        const blockProps = useBlockProps({ className: 'vaaky-highlighter-editor' });
         const {
-            attributes: { content, language },
+            attributes: { content, language, filename, showLineNumbers, wordWrap },
             setAttributes,
-            className,
         } = props;
 
         return (
-            <div className={className} {...blockProps}>
+            <div {...blockProps}>
                 <InspectorControls>
-                    <PanelBody title={__('Vaaky Highlighter Settings', 'vaaky-highlighter')}>
+                    <PanelBody title={__('Vaaky Highlighter', 'vaaky-highlighter')}>
                         <SelectControl
                             label={__('Language', 'vaaky-highlighter')}
                             value={language}
                             options={languages}
                             onChange={(value) => setAttributes({ language: value })}
                         />
+                        <TextControl
+                            label={__('Filename (optional)', 'vaaky-highlighter')}
+                            value={filename || ''}
+                            onChange={(value) => setAttributes({ filename: value })}
+                            help={__('Shows as a tab above the code block.', 'vaaky-highlighter')}
+                        />
+                        <ToggleControl
+                            label={__('Show line numbers', 'vaaky-highlighter')}
+                            checked={!!showLineNumbers}
+                            onChange={(value) => setAttributes({ showLineNumbers: value })}
+                            help={__('Leave off to use the global default.', 'vaaky-highlighter')}
+                        />
+                        <ToggleControl
+                            label={__('Word wrap', 'vaaky-highlighter')}
+                            checked={!!wordWrap}
+                            onChange={(value) => setAttributes({ wordWrap: value })}
+                            help={__('Wrap long lines instead of scrolling.', 'vaaky-highlighter')}
+                        />
                     </PanelBody>
                 </InspectorControls>
 
+                {filename && (
+                    <div className="vaaky-filename-preview">{filename}</div>
+                )}
                 <TextareaControl
-                    label="Code Snippet"
+                    label={__('Code Snippet', 'vaaky-highlighter')}
                     value={content}
                     onChange={(value) => setAttributes({ content: value })}
                     rows="10"
@@ -90,12 +110,17 @@ registerBlockType(metadata.name, {
     },
     save: (props) => {
         const {
-            attributes: { content, language },
+            attributes: { content, language, filename, showLineNumbers, wordWrap },
         } = props;
-        const shortcode =
-            '[vaakyHighlighterCode lang="' + language + '"]' +
-            htmlEntities(content) +
-            '[/vaakyHighlighterCode]';
+        const parts = [
+            `lang="${language || ''}"`,
+            filename ? `filename="${htmlEntities(filename)}"` : '',
+            showLineNumbers === true ? 'linenumbers="1"' : '',
+            showLineNumbers === false ? 'linenumbers="0"' : '',
+            wordWrap === true ? 'wrap="1"' : '',
+            wordWrap === false ? 'wrap="0"' : '',
+        ].filter(Boolean).join(' ');
+        const shortcode = `[vaakyHighlighterCode ${parts}]${htmlEntities(content)}[/vaakyHighlighterCode]`;
         return (
             <div>
                 <RawHTML>{shortcode}</RawHTML>
