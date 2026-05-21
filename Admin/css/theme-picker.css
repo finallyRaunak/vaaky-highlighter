@@ -17,7 +17,6 @@
 .vaaky-theme-card:hover {
     border-color: #999;
 }
-.vaaky-theme-card.is-selected,
 .vaaky-theme-card:has(input:checked) {
     border-color: #2271b1;
     box-shadow: 0 0 0 1px #2271b1;

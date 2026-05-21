@@ -40,7 +40,7 @@ $sampleHtml = '<pre><code class="hljs language-javascript">'
             . 'pre code.hljs{display:block;height:100%;padding:10px;box-sizing:border-box;overflow:hidden;}'
             . '</style></head><body>' . $sampleHtml . '</body></html>';
     ?>
-        <label class="vaaky-theme-card<?php echo ($slug === $currentTheme) ? ' is-selected' : ''; ?>">
+        <label class="vaaky-theme-card">
             <input
                 type="radio"
                 name="<?php echo esc_attr($fieldName); ?>"
