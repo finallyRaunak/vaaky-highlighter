@@ -75,6 +75,8 @@ class Admin
         if ($isAdmin)
         {
             add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'), 10);
+            add_action('admin_notices', array($this, 'maybeShowReviewNotice'));
+            add_action('wp_ajax_vaaky_review_notice', array($this, 'handleReviewNoticeAjax'));
         }
     }
 
@@ -119,6 +121,62 @@ class Admin
     public function registerBlock()
     {
         register_block_type(plugin_dir_path(dirname(__FILE__)));
+    }
+
+    /**
+     * Show a review request notice on the plugin's settings page after 7 days.
+     *
+     * @since   1.2.0
+     */
+    public function maybeShowReviewNotice()
+    {
+        $state = get_option('vaaky_review_notice_state', 'pending');
+        if ($state === 'dismissed') {
+            return;
+        }
+
+        $activatedAt = (int) get_option('vaaky_activated_at', time());
+        $remindAt    = (int) get_option('vaaky_review_notice_remind_at', 0);
+        $now         = time();
+
+        if ($state === 'later' && $now < $remindAt) {
+            return;
+        }
+        if ($state === 'pending' && ($now - $activatedAt) < (7 * DAY_IN_SECONDS)) {
+            return;
+        }
+
+        $screen = get_current_screen();
+        if (!$screen || false === strpos($screen->id, 'vaaky-highlighter')) {
+            return;
+        }
+
+        wp_enqueue_script(
+            $this->pluginSlug . '-review-notice',
+            plugin_dir_url(__FILE__) . 'js/review-notice.js',
+            array(),
+            $this->version,
+            true
+        );
+        include plugin_dir_path(__FILE__) . 'partials/review-notice.php';
+    }
+
+    /**
+     * Handle AJAX request for the review notice decision.
+     *
+     * @since   1.2.0
+     */
+    public function handleReviewNoticeAjax()
+    {
+        check_ajax_referer('vaaky_review_notice');
+        $decision = isset($_POST['decision']) ? sanitize_text_field(wp_unslash($_POST['decision'])) : '';
+        if ($decision === 'later') {
+            update_option('vaaky_review_notice_state', 'later');
+            update_option('vaaky_review_notice_remind_at', time() + (14 * DAY_IN_SECONDS));
+        } else {
+            update_option('vaaky_review_notice_state', 'dismissed');
+        }
+        wp_send_json_success();
     }
 
 }

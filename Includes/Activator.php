@@ -111,6 +111,10 @@ class Activator
     {
         $obj = new Settings(VAAKY_HIGHLIGHTER_SLUG);
         $obj->getSettingOptions();
+
+        if (!get_option('vaaky_activated_at')) {
+            add_option('vaaky_activated_at', time());
+        }
     }
 
 }
