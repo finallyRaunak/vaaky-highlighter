@@ -42,11 +42,11 @@ if (!defined('ABSPATH'))
         <ul>
             <li>
                 <span class="dashicons dashicons-media-document"></span>
-                <a target="_blank" href="https://github.com/finallyRaunak/vaaky-highlighter"><?= __('Documentation', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/finallyRaunak/vaaky-highlighter"><?= __('Documentation', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-format-chat"></span>
-                <a target="_blank" href="https://wordpress.org/plugins/vaaky-highlighter/#faq-header"><?= __('FAQs', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/plugins/vaaky-highlighter/#faq-header"><?= __('FAQs', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-art"></span>
@@ -54,19 +54,19 @@ if (!defined('ABSPATH'))
             </li>
             <li>
                 <span class="dashicons dashicons-sos"></span>
-                <a target="_blank" href="https://wordpress.org/support/plugin/vaaky-highlighter"><?= __('Support Forum', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/support/plugin/vaaky-highlighter"><?= __('Support Forum', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-buddicons-replies"></span>
-                <a target="_blank" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Report a Bug', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Report a Bug', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-star-filled"></span>
-                <a target="_blank" href="https://wordpress.org/support/plugin/vaaky-highlighter/reviews/#new-post"><?= __('Review us!', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/support/plugin/vaaky-highlighter/reviews/#new-post"><?= __('Review us!', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-lightbulb"></span>
-                <a target="_blank" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Request for a feature', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Request for a feature', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-twitter"></span>
@@ -74,7 +74,7 @@ if (!defined('ABSPATH'))
             </li>
             <li>
                 <span class="dashicons dashicons-wordpress-alt"></span>
-                <a target="_blank" href="https://wordpress.org/plugin/vaaky-highlighter"><?= __('Catch us on WordPress', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/plugin/vaaky-highlighter"><?= __('Catch us on WordPress', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-external"></span>
