@@ -20,7 +20,7 @@ if (!defined('ABSPATH'))
  *
  * @package    VaakyHighlighter
  * @subpackage VaakyHighlighter/Frontend
- * @author     Raunak Gupta <raunak.gupta@webhat.in>
+ * @author     Raunak Gupta <hello@techunfiltered.dev>
  */
 class Frontend
 {
@@ -128,18 +128,42 @@ class Frontend
         $scriptId  = $this->pluginSlug . '-hljs';
         $scriptUrl = $scriptBaseUrl . 'highlight.min.js';
 
-        $scriptCoreId  = $this->pluginSlug . '-frontend';
-        $scriptCoreUrl = $scriptBaseUrl . 'core.js';
+        $scriptLineNumbersId = $this->pluginSlug . '-line-numbers';
+        $scriptCoreId        = $this->pluginSlug . '-frontend';
+        $scriptCoreUrl       = $scriptBaseUrl . 'core.js';
 
-        if ((wp_register_script($scriptId, $scriptUrl, array('jquery'), $this->version, false) === false) || (wp_register_script($scriptCoreId, $scriptCoreUrl, array($scriptId), $this->version, false) === false))
+        if (wp_register_script($scriptId, $scriptUrl, array('jquery'), $this->version, false) === false)
         {
             exit(esc_html__('Script could not be registered: ', 'vaaky-highlighter') . $scriptUrl);
+        }
+
+        // Line numbers plugin — must load BEFORE core.js so hljs.initLineNumbersOnLoad is defined when core runs.
+        wp_register_script(
+            $scriptLineNumbersId,
+            $scriptBaseUrl . 'line-numbers.min.js',
+            array($scriptId),
+            $this->version,
+            false
+        );
+
+        // core.js — depends on both hljs core and the line-numbers plugin so the load order is deterministic.
+        if (wp_register_script($scriptCoreId, $scriptCoreUrl, array($scriptId, $scriptLineNumbersId), $this->version, false) === false)
+        {
+            exit(esc_html__('Script could not be registered: ', 'vaaky-highlighter') . $scriptCoreUrl);
         }
 
         foreach ($this->extModule as $lang)
         {
             wp_register_script($this->pluginSlug . '-hljs-' . $lang, $scriptBaseUrl . $lang . '.min.js', array($scriptId), $this->version, false);
         }
+
+        wp_register_script(
+            $this->pluginSlug . '-copy-button',
+            $scriptBaseUrl . 'copy-button.js',
+            array($scriptCoreId),
+            $this->version,
+            true
+        );
     }
 
     public function codeBlockShortcode($atts = array(), $content = null, $tag = 'vaakyHighlighterCode')
@@ -148,17 +172,46 @@ class Frontend
         $atts      = array_change_key_case((array) $atts, CASE_LOWER);
         $shAtts    = shortcode_atts(
                 array(
-                    'lang' => '',
+                    'lang'        => '',
+                    'filename'    => '',
+                    'linenumbers' => '', // '' = use global default, '0' or '1' = explicit
+                    'wrap'        => '', // '' = use global default, '0' or '1' = explicit
                 ), $atts, $tag
         );
+
+        $showLineNumbers = ($shAtts['linenumbers'] === '')
+            ? $this->settings->getDefaultLineNumbers()
+            : ($shAtts['linenumbers'] === '1');
+
+        $wordWrap = ($shAtts['wrap'] === '')
+            ? $this->settings->getDefaultWordWrap()
+            : ($shAtts['wrap'] === '1');
+
         $overflow  = $this->settings->getTextOverflow();
 
-        $this->enqueueNeededAssets(!empty($shAtts['lang']) ? $shAtts['lang'] : null );
+        $this->enqueueNeededAssets(
+            !empty($shAtts['lang']) ? $shAtts['lang'] : null,
+            $showLineNumbers
+        );
 
         $codeClass[] = ($overflow == 'new-line') ? 'vaaky-line-break' : '';
         $codeClass[] = (!empty($shAtts['lang']) ? ('language-' . $shAtts['lang'] ) : '' );
-        $o           = '<pre>';
-        $o           .= '<code class="' . implode(' ', $codeClass) . '">';
+
+        if ($wordWrap) {
+            $codeClass[] = 'vaaky-line-break';
+        }
+
+        $preClass = [];
+        if ($showLineNumbers) {
+            $preClass[] = 'vaaky-line-numbers';
+        }
+
+        $o = '<div class="vaaky-highlighter-wrap">';
+        if (!empty($shAtts['filename'])) {
+            $o .= '<div class="vaaky-filename">' . esc_html($shAtts['filename']) . '</div>';
+        }
+        $o .= '<pre class="' . esc_attr(implode(' ', array_filter($preClass))) . '">';
+        $o .= '<code class="' . esc_attr(implode(' ', array_filter($codeClass))) . '">';
 
         // enclosing tags
         if (!is_null($content))
@@ -170,16 +223,7 @@ class Frontend
         // end box
         $o .= '</code>';
         $o .= '</pre>';
-        $o .= '<div class="vaaky-toolbar">';
-        if (!empty($this->settings->getCodeCopyBtn()))
-        {
-            $o .= '<button class="vaaky-btn vaaky-copy-btn" title="' . __('Copy to Clipboard', 'vaaky-highlighter') . '"><span>' . __('Copy', 'vaaky-highlighter') . '</span></button>';
-        }
-        if (!empty($this->settings->getAttributionBtn()))
-        {
-            $o .= '<button class="vaaky-btn vaaky-website-btn" title="' . __('Visit Vaaky Highlighter Website', 'vaaky-highlighter') . '">' . __('Website', 'vaaky-highlighter') . '</button>';
-        }
-        $o .= '</div>';
+        $o .= '</div>'; // close .vaaky-highlighter-wrap
 
         return $o;
     }
@@ -190,20 +234,22 @@ class Frontend
      * @param string $lang
      * @since 1.0.1
      */
-    private function enqueueNeededAssets($lang = null)
+    private function enqueueNeededAssets($lang = null, $needLineNumbers = false)
     {
         //Loading the style
         wp_enqueue_style($this->pluginSlug . '-theme');
         wp_enqueue_style($this->pluginSlug . '-frontend');
 
-        //Loading the scripts
-        wp_enqueue_script($this->pluginSlug . '-hljs');
+        //Loading the scripts — '-line-numbers' is a registered dependency of '-frontend',
+        //so enqueueing '-frontend' transitively enqueues '-hljs' AND '-line-numbers' in the right order.
         wp_enqueue_script($this->pluginSlug . '-frontend');
 
         if (!empty($lang) && in_array($lang, $this->extModule))
         {
             wp_enqueue_script($this->pluginSlug . '-hljs-' . $lang);
         }
+
+        wp_enqueue_script($this->pluginSlug . '-copy-button');
     }
 
 }

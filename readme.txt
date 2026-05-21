@@ -1,20 +1,18 @@
-=== Vaaky Highlighter - Syntax Highlighter for Gutenberg ===
+=== Vaaky Highlighter — Syntax Highlighter, Code Blocks, Line Numbers for Gutenberg ===
 Contributors: raunak01
-Donate link: https://www.webhat.in/
-Tags: syntax highlighter, highlight.js, code blocks, gutenberg, snippets
-Requires at least: 6.0
-Tested up to: 6.9
-Requires PHP: 5.6
-Stable tag: 1.1.0
+Tags: syntax highlighter, code blocks, line numbers, code snippet, prism
+Requires at least: 6.5
+Tested up to: 7.0
+Requires PHP: 7.4
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Lightweight syntax highlighter plugin for WordPress Gutenberg powered by Highlight.js. Add beautiful, fast, and responsive code blocks with ease.
+Lightweight syntax highlighter with code blocks, line numbers, copy-to-clipboard, and 35+ themes. A fast, free alternative to Prism for WordPress.
 
 == Description ==
 
-Vaaky Highlighter is a lightweight **syntax highlighter plugin for WordPress Gutenberg**.
-It allows you to add clean, readable, and visually appealing **code blocks and code snippets** with automatic language detection.
+Vaaky Highlighter is a **lightweight syntax highlighter** plugin for the WordPress Gutenberg editor. Add beautiful **code blocks** with **line numbers**, a **copy-to-clipboard button**, optional **filename label**, automatic language detection, and 35+ themes. Powered by **Highlight.js** — a fast, dependency-free alternative to Prism.
 
 Syntax highlighting is powered by **Highlight.js**, a fast and dependency-free JavaScript library that supports multiple programming languages and themes.
 
@@ -25,12 +23,22 @@ Using it is simple: add the **Vaaky Highlighter Sourcecode block** in Gutenberg,
 **View the live demo of all supported themes:**
 [Demo Page](https://www.webhat.in/?page_id=626&utm_source=wordpress.org&utm_medium=readme.txt&utm_campaign=link&utm_id=vaaky_highlighter&utm_term=Theme+Demo)
 
+== What's new in 1.2.0 ==
+
+* Line numbers for code blocks
+* Floating copy-to-clipboard button on every block
+* Optional filename label (renders as a tab above the code)
+* Word-wrap toggle per block + global default
+* Visual theme picker (no more guessing from a dropdown)
+* Modernized build using @wordpress/scripts
+* Drops PHP 5.6 / WordPress 6.0 support — now requires PHP 7.4 / WordPress 6.5
+
 == Installation ==
 
 = Minimum Requirements =
 
-* WordPress 6.0 or higher
-* PHP 5.6 or higher
+* WordPress 6.5 or higher
+* PHP 7.4 or higher
 
 = Automatic Installation =
 
@@ -120,7 +128,7 @@ https://github.com/finallyRaunak/vaaky-highlighter/issues
 
 = Does the plugin support line numbers? =
 
-No, line numbers are not supported at this time.
+Yes. Toggle line numbers per block from the block inspector, or set a global default under Settings → Vaaky Highlighter.
 
 = Does Vaaky Highlighter work with the Classic Editor? =
 
@@ -132,16 +140,24 @@ The `lang` attribute is optional. If omitted, the language will be auto-detected
 
 == Screenshots ==
 
-1. Gutenberg syntax highlighter block
-2. Visual Studio 2015 theme - JavaScript code snippet
-3. Visual Studio 2015 theme - PHP code snippet
-4. Visual Studio 2015 theme - YAML code snippet
-5. Monokai (Sublime) theme - JavaScript code snippet
-6. Monokai (Sublime) theme - YAML code snippet
-7. Monokai (Sublime) theme - PHP snippet with scrollbar
-8. Monokai (Sublime) theme - PHP snippet with line wrapping
+1. Plugin settings — visual theme picker with live previews of 35+ themes, plus System Information and Quick Links sidebar
+2. Plugin settings — more theme previews plus the Block Defaults section (Code Overflow, Show Line Numbers, Word Wrap)
+3. Frontend rendering — TypeScript and JavaScript code blocks with line numbers and the floating copy button
+4. Frontend rendering — multi-language showcase (Dockerfile, Java, R, Ruby, PowerShell, Bash) with line numbers
+5. Frontend rendering — PHP and Twig code blocks with line numbers and syntax highlighting
 
 == Changelog ==
+
+= 1.2.0 =
+* Add line numbers, copy button, filename label, word-wrap toggle
+* Add visual theme picker in settings
+* Add dismissible wp.org review prompt after 7-day grace period
+* Migrate build to @wordpress/scripts and block.json (apiVersion 3)
+* Fix XSS in admin sidebar UTM parameters
+* Bump minimum PHP to 7.4 and minimum WordPress to 6.5
+* Replace deprecated webhat.in author metadata with techunfiltered.dev
+* Drop Facebook link; update Twitter handle to @__RaunakGupta
+* Fix Go language slug ('golang' → 'go') so highlighting actually works
 
 = 1.1.0 - 2026-01-10 =
 * Updated WordPress compatibility to 6.9
@@ -151,12 +167,9 @@ The `lang` attribute is optional. If omitted, the language will be auto-detected
 * Updated all existing themes
 * Fixed WordPress.org compatibility warnings
 
-= 1.0.6 - 2024-01-01 =
-* Fixed deprecated settings notice
-* Tested with latest WordPress version
-
 [See the changelog for all versions](https://github.com/finallyRaunak/vaaky-highlighter/blob/main/CHANGELOG.md).
 
 == Upgrade Notice ==
 
-No special upgrade steps are required.
+= 1.2.0 =
+Major update: line numbers, copy button, filename labels, and a redesigned theme picker. Requires PHP 7.4+ and WordPress 6.5+.

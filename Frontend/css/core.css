@@ -1,8 +1,131 @@
-.wp-block-vaaky-highlighter-code-khand{position:relative}
-.vaaky-toolbar{position:absolute;top:8px;right:8px;display:none}
-.wp-block-vaaky-highlighter-code-khand:hover .vaaky-toolbar{display:block}
-.vaaky-btn{background:#fff;border:.125em solid #000;cursor:pointer;font:600 14px sans-serif;letter-spacing:.125em;margin:.5rem;padding:.5em .75em;position:relative;text-transform:uppercase;text-decoration:none;color:#000000}
-.vaaky-btn:before,.vaaky-btn:after{content:'';position:absolute;transition:all .125s ease-in-out}
-.vaaky-btn:after{border:.125em dashed #000;bottom:-.125em;left:-.125em;right:-.125em;top:-.125em}
-.vaaky-btn:hover:after,.vaaky-btn:focus:after{bottom:.125em;left:.125em;right:.125em;top:.125em}
 .vaaky-line-break{white-space:break-spaces}
+
+/* === v1.2 features === */
+
+.vaaky-highlighter-wrap {
+    margin: 1em 0;
+}
+
+.vaaky-highlighter-wrap .vaaky-filename {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 5px 14px;
+    background: #1e1e1e;
+    color: #e6e6e6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.85em;
+    border-radius: 6px 6px 0 0;
+    line-height: 1.4;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vaaky-highlighter-wrap .vaaky-filename + pre {
+    margin-top: 0;
+    border-top-left-radius: 0;
+}
+
+.vaaky-highlighter-wrap pre {
+    position: relative;
+    overflow-x: auto;
+    border-radius: 6px;
+}
+
+.vaaky-highlighter-wrap .vaaky-filename + pre {
+    border-top-left-radius: 0;
+}
+
+/*
+ * hljs line-numbers table — defensive reset.
+ * Themes (and many user CSS sheets) target `table, th, td` with borders,
+ * background, font-size, etc. Without an explicit reset those rules paint
+ * every row of the gutter as a spreadsheet cell. We re-establish a clean
+ * baseline on our own table, then layer our own gutter styles on top.
+ */
+.vaaky-highlighter-wrap .hljs-ln,
+.vaaky-highlighter-wrap .hljs-ln tbody,
+.vaaky-highlighter-wrap .hljs-ln tr,
+.vaaky-highlighter-wrap .hljs-ln td {
+    border: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    vertical-align: top !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    font-family: inherit !important;
+    color: inherit !important;
+    text-align: left;
+}
+
+.vaaky-highlighter-wrap .hljs-ln {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    width: auto !important;
+}
+
+.vaaky-highlighter-wrap .hljs-ln td.hljs-ln-numbers {
+    user-select: none;
+    text-align: right !important;
+    padding-right: 0.8em !important;
+    border-right: 1px solid rgba(127, 127, 127, 0.3) !important;
+    opacity: 0.55;
+    width: 2.5em;
+    white-space: nowrap;
+}
+
+.vaaky-highlighter-wrap .hljs-ln td.hljs-ln-code {
+    padding-left: 0.8em !important;
+    white-space: pre;
+}
+
+/* When word-wrap is on, allow code column to wrap; gutter stays nowrap */
+.vaaky-highlighter-wrap pre.vaaky-line-break .hljs-ln td.hljs-ln-code,
+.vaaky-highlighter-wrap code.vaaky-line-break .hljs-ln td.hljs-ln-code {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.vaaky-line-break {
+    white-space: pre-wrap !important;
+    word-break: break-word;
+}
+
+/* Floating copy button — child of <pre>, positioned within it */
+.vaaky-highlighter-wrap pre .vaaky-copy-btn-floating {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.4;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, background 0.15s ease;
+    z-index: 10;
+}
+
+.vaaky-highlighter-wrap pre:hover .vaaky-copy-btn-floating,
+.vaaky-copy-btn-floating:focus {
+    opacity: 1;
+}
+
+.vaaky-copy-btn-floating:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.vaaky-copy-btn-floating.is-copied {
+    background: rgba(46, 160, 67, 0.85);
+    border-color: rgba(46, 160, 67, 0.9);
+    opacity: 1;
+}

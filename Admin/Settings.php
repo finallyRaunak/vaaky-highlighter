@@ -57,7 +57,6 @@ class Settings extends SettingsBase
      * @var string
      */
     private $appearanceSettingsSectionId;
-    private $toolbarSettingsSectionId;
 
     /**
      * @var string General settings page.
@@ -86,8 +85,16 @@ class Settings extends SettingsBase
      */
     private $themeId;
     private $textOverflowId;
-    private $codeCopyBtnId;
-    private $allowAttributionBtnId;
+    private $defaultLineNumbersId;
+    private $defaultWordWrapId;
+
+    /**
+     * General settings' section for block defaults.
+     *
+     * @since    1.2.0
+     * @var string
+     */
+    private $defaultsSettingsSectionId;
 
     /**
      * Initialize the class and set its properties.
@@ -112,12 +119,12 @@ class Settings extends SettingsBase
         $this->textOverflowId = 'text-overflow-appearance' . self::RADIO_SUFFIX;
 
         /**
-         * Toolbar Config
+         * Defaults Config
          */
-        $this->toolbarSettingsSectionId = $pluginSlug . '-toolbar-section';
+        $this->defaultsSettingsSectionId = $pluginSlug . '-defaults-section';
 
-        $this->codeCopyBtnId         = 'code-copy-btn-toolbar' . self::CHECKBOX_SUFFIX;
-        $this->allowAttributionBtnId = 'attribution-btn-toolbar' . self::CHECKBOX_SUFFIX;
+        $this->defaultLineNumbersId = 'default-line-numbers-defaults' . self::CHECKBOX_SUFFIX;
+        $this->defaultWordWrapId    = 'default-word-wrap-defaults' . self::CHECKBOX_SUFFIX;
     }
 
     /**
@@ -184,7 +191,7 @@ class Settings extends SettingsBase
         settings_errors($this->pluginSlug);
         ?>
         <!-- Create a header in the default WordPress 'wrap' container -->
-        <div class="wrap">
+        <div class="wrap vaaky-settings-page">
 
             <h2><?php esc_html_e('Vaaky Highlighter', 'vaaky-highlighter'); ?></h2>
 
@@ -228,12 +235,12 @@ class Settings extends SettingsBase
 
         add_settings_field($this->textOverflowId, __('Code Overflow', 'vaaky-highlighter'), array($this, 'radioOverflowCallback'), $this->settingsPage, $this->appearanceSettingsSectionId, array('label_for' => $this->textOverflowId));
 
-        //Toolbar Section
-        add_settings_section($this->toolbarSettingsSectionId, __('Toolbar Button', 'vaaky-highlighter'), array(), $this->settingsPage);
+        //Defaults Section
+        add_settings_section($this->defaultsSettingsSectionId, __('Block Defaults', 'vaaky-highlighter'), array(), $this->settingsPage);
 
-        add_settings_field($this->codeCopyBtnId, __('Copy Code', 'vaaky-highlighter'), array($this, 'checkboxCodeCopyBtnCallback'), $this->settingsPage, $this->toolbarSettingsSectionId, array('label_for' => $this->codeCopyBtnId));
+        add_settings_field($this->defaultLineNumbersId, __('Show Line Numbers', 'vaaky-highlighter'), array($this, 'checkboxDefaultLineNumbersCallback'), $this->settingsPage, $this->defaultsSettingsSectionId, array('label_for' => $this->defaultLineNumbersId));
 
-        add_settings_field($this->allowAttributionBtnId, __('Attribution Button', 'vaaky-highlighter'), array($this, 'checkboxAttributionBtnCallback'), $this->settingsPage, $this->toolbarSettingsSectionId, array('label_for' => $this->allowAttributionBtnId));
+        add_settings_field($this->defaultWordWrapId, __('Word Wrap', 'vaaky-highlighter'), array($this, 'checkboxDefaultWordWrapCallback'), $this->settingsPage, $this->defaultsSettingsSectionId, array('label_for' => $this->defaultWordWrapId));
 
         $registerSettingArguments = array(
             'type'              => 'array',
@@ -242,13 +249,6 @@ class Settings extends SettingsBase
             'show_in_rest'      => false
         );
         register_setting($this->settingOptionGroup, $this->settingOptionName, $registerSettingArguments);
-    }
-
-    public function inputApperanceCallback()
-    {
-        $this->getSettingOptions();
-        echo '<p>' . esc_html__('Settings as stored in the database.', 'vaaky-highlighter') . '</p>';
-        var_dump($this->settingOptions);
     }
 
     /**
@@ -283,10 +283,10 @@ class Settings extends SettingsBase
     private function defaultInputOptions()
     {
         return array(
-            $this->themeId               => 'github',
-            $this->textOverflowId        => 'scrollbar',
-            $this->codeCopyBtnId         => 1,
-            $this->allowAttributionBtnId => 1
+            $this->themeId              => 'github',
+            $this->textOverflowId       => 'scrollbar',
+            $this->defaultLineNumbersId => 1,
+            $this->defaultWordWrapId    => 0
         );
     }
 
@@ -302,16 +302,22 @@ class Settings extends SettingsBase
         return !empty($this->settingOptions[$this->textOverflowId]) ? $this->settingOptions[$this->textOverflowId] : 'scrollbar';
     }
 
-    public function getCodeCopyBtn()
+    /**
+     * @return bool
+     */
+    public function getDefaultLineNumbers()
     {
         $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->codeCopyBtnId]) ? $this->settingOptions[$this->codeCopyBtnId] : false;
+        return (bool) (isset($this->settingOptions[$this->defaultLineNumbersId]) ? $this->settingOptions[$this->defaultLineNumbersId] : true);
     }
 
-    public function getAttributionBtn()
+    /**
+     * @return bool
+     */
+    public function getDefaultWordWrap()
     {
         $this->settingOptions = $this->getSettingOptions();
-        return (bool) !empty($this->settingOptions[$this->allowAttributionBtnId]) ? $this->settingOptions[$this->allowAttributionBtnId] : false;
+        return (bool) (isset($this->settingOptions[$this->defaultWordWrapId]) ? $this->settingOptions[$this->defaultWordWrapId] : false);
     }
 
 }

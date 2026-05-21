@@ -20,7 +20,7 @@ if (!defined('ABSPATH'))
  * @since      1.0.0
  * @package    VaakyHighlighter
  * @subpackage VaakyHighlighter/Includes
- * @author     Raunak Gupta <raunak.gupta@webhat.in>
+ * @author     Raunak Gupta <hello@techunfiltered.dev>
  */
 class Activator
 {
@@ -111,6 +111,10 @@ class Activator
     {
         $obj = new Settings(VAAKY_HIGHLIGHTER_SLUG);
         $obj->getSettingOptions();
+
+        if (!get_option('vaaky_activated_at')) {
+            add_option('vaaky_activated_at', time());
+        }
     }
 
 }

@@ -2,27 +2,18 @@ jQuery(document).ready(function ($) {
     hljs.configure({ ignoreUnescapedHTML: true });
     hljs.highlightAll();
 
-    jQuery('.vaaky-toolbar .vaaky-copy-btn').off('click').on('click', function () {
-        let codeBlock = jQuery(this).parent().parent().find('pre code');
-        let text = codeBlock.text();
+    // Apply line numbers directly to blocks we marked (sync API — sidesteps
+    // the lib's initLineNumbersOnLoad which uses for-in over a NodeList and
+    // can swallow errors silently on some browsers).
+    if (typeof hljs.lineNumbersBlockSync === 'function') {
+        document.querySelectorAll('.vaaky-line-numbers code.hljs').forEach(function (block) {
+            try {
+                hljs.lineNumbersBlockSync(block, { singleLine: true });
+            } catch (e) {
+                if (window.console) console.error('vaaky line-numbers:', e);
+            }
+        });
+    }
 
-        // first version - document.execCommand('copy');
-        var element = document.createElement('textarea');
-        document.body.appendChild(element);
-        element.value = text;
-        element.select();
-        document.execCommand('copy');
-        document.body.removeChild(element);
-
-        jQuery("span", this).text('Copied!');
-        setTimeout(() => {
-            jQuery("span", this).text('Copy');
-        }, 2500);
-
-    });
-
-    jQuery('.vaaky-toolbar .vaaky-website-btn').off('click').on('click', function () {
-        window.open("https://www.webhat.in/?page_id=626&utm_source=plugin&utm_medium=code_btn&utm_id=vaaky_highlighter&utm_term=Website&utm_campaign=" + jQuery(location).attr('hostname'));
-    });
-
+    document.dispatchEvent(new CustomEvent('vaaky:highlighted'));
 });

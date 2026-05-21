@@ -42,47 +42,43 @@ if (!defined('ABSPATH'))
         <ul>
             <li>
                 <span class="dashicons dashicons-media-document"></span>
-                <a target="_blank" href="https://github.com/finallyRaunak/vaaky-highlighter"><?= __('Documentation', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/finallyRaunak/vaaky-highlighter"><?= __('Documentation', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-format-chat"></span>
-                <a target="_blank" href="https://wordpress.org/plugins/vaaky-highlighter/#faq-header"><?= __('FAQs', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/plugins/vaaky-highlighter/#faq-header"><?= __('FAQs', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-art"></span>
-                <a target="_blank" href="https://www.webhat.in/?page_id=626&utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=<?= $_SERVER['HTTP_HOST']; ?>&utm_id=vaaky_highlighter&utm_term=Theme+Demo"><?= __('Theme Demo', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://www.webhat.in/?page_id=626&utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=vaaky_highlighter_admin&utm_id=vaaky_highlighter&utm_term=Theme+Demo"><?php esc_html_e('Theme Demo', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-sos"></span>
-                <a target="_blank" href="https://wordpress.org/support/plugin/vaaky-highlighter"><?= __('Support Forum', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/support/plugin/vaaky-highlighter"><?= __('Support Forum', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-buddicons-replies"></span>
-                <a target="_blank" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Report a Bug', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Report a Bug', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-star-filled"></span>
-                <a target="_blank" href="https://wordpress.org/support/plugin/vaaky-highlighter/reviews/#new-post"><?= __('Review us!', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/support/plugin/vaaky-highlighter/reviews/#new-post"><?= __('Review us!', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-lightbulb"></span>
-                <a target="_blank" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Request for a feature', 'vaaky-highlighter'); ?></a>
-            </li>
-            <li>
-                <span class="dashicons dashicons-facebook"></span>
-                <a target="_blank" href="https://www.facebook.com/webhat.in/"><?= __('Catch us on Facebook', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://github.com/finallyRaunak/vaaky-highlighter/issues"><?= __('Request for a feature', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-twitter"></span>
-                <a target="_blank" href="https://twitter.com/webhat14"><?= __('Catch us on Twitter', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://x.com/__RaunakGupta"><?php esc_html_e('Catch us on X', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-wordpress-alt"></span>
-                <a target="_blank" href="https://wordpress.org/plugin/vaaky-highlighter"><?= __('Catch us on WordPress', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://wordpress.org/plugin/vaaky-highlighter"><?= __('Catch us on WordPress', 'vaaky-highlighter'); ?></a>
             </li>
             <li>
                 <span class="dashicons dashicons-external"></span>
-                <a target="_blank" href="https://www.webhat.in/?utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=<?= $_SERVER['HTTP_HOST']; ?>&utm_id=vaaky_highlighter&utm_term=Author%27s+Website"><?= __('Author\'s Website', 'vaaky-highlighter'); ?></a>
+                <a target="_blank" rel="noopener noreferrer" href="https://techunfiltered.dev/?utm_source=plugin&utm_medium=wp_admin_link&utm_campaign=vaaky_highlighter_admin&utm_id=vaaky_highlighter&utm_term=Author%27s+Website"><?php esc_html_e('Author\'s Website', 'vaaky-highlighter'); ?></a>
             </li>
         </ul>
     </div>

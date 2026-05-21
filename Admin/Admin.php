@@ -19,7 +19,7 @@ if (!defined('ABSPATH'))
  *
  * @package    VaakyHighlighter
  * @subpackage VaakyHighlighter/Admin
- * @author     Raunak Gupta <raunak.gupta@webhat.in>
+ * @author     Raunak Gupta <hello@techunfiltered.dev>
  */
 class Admin
 {
@@ -69,12 +69,35 @@ class Admin
      */
     public function initializeHooks($isAdmin)
     {
+        add_action('init', array($this, 'registerBlock'));
+
         // Admin
         if ($isAdmin)
         {
             add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'), 10);
-            add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'), 10);
+            add_action('admin_notices', array($this, 'maybeShowReviewNotice'));
+            add_action('wp_ajax_vaaky_review_notice', array($this, 'handleReviewNoticeAjax'));
+            add_action('enqueue_block_editor_assets', array($this, 'localizeBlockDefaults'));
         }
+    }
+
+    /**
+     * Pass the plugin's global defaults to the block editor so the per-block
+     * inspector toggles can visually reflect the current global state.
+     *
+     * @since 1.2.0
+     */
+    public function localizeBlockDefaults()
+    {
+        $handle = 'vaaky-highlighter-code-khand-editor-script';
+        if (!wp_script_is($handle, 'registered')) {
+            return;
+        }
+        $payload = wp_json_encode(array(
+            'showLineNumbers' => (bool) $this->settings->getDefaultLineNumbers(),
+            'wordWrap'        => (bool) $this->settings->getDefaultWordWrap(),
+        ));
+        wp_add_inline_script($handle, 'window.vaakyDefaults = ' . $payload . ';', 'before');
     }
 
     /**
@@ -98,29 +121,85 @@ class Admin
          * To load only on a certain page, use the $hook.
          */
         wp_enqueue_style($styleId);
+
+        $screen = get_current_screen();
+        if ($screen && false !== strpos($screen->id, 'vaaky-highlighter')) {
+            wp_enqueue_style(
+                $this->pluginSlug . '-theme-picker',
+                plugin_dir_url(__FILE__) . 'css/theme-picker.css',
+                array(),
+                $this->version
+            );
+        }
     }
 
     /**
-     * Register the JavaScript for the admin area.
+     * Register the Gutenberg block via block.json.
      *
-     * @since   1.0.0
-     * @param   string  $hook    A screen id to filter the current admin page
+     * @since   1.2.0
      */
-    public function enqueueScripts($hook)
+    public function registerBlock()
     {
-        $scriptId = $this->pluginSlug . '-gutenberg';
+        register_block_type(plugin_dir_path(dirname(__FILE__)));
+    }
 
-        $scriptUrl = plugin_dir_url(__FILE__) . 'js/gutenberg.js';
-        if (wp_register_script($scriptId, $scriptUrl, array('wp-blocks', 'wp-editor'), $this->version, true) === false)
-        {
-            exit(esc_html__('Script could not be registered: ', 'vaaky-highlighter') . $scriptUrl);
+    /**
+     * Show a review request notice on the plugin's settings page after 7 days.
+     *
+     * @since   1.2.0
+     */
+    public function maybeShowReviewNotice()
+    {
+        $state = get_option('vaaky_review_notice_state', 'pending');
+        if ($state === 'dismissed') {
+            return;
         }
 
-        /**
-         * If you enque the script here, it will be loaded on every Admin page.
-         * To load only on a certain page, use the $hook.
-         */
-        wp_enqueue_script($scriptId);
+        $activatedAt = (int) get_option('vaaky_activated_at', time());
+        $remindAt    = (int) get_option('vaaky_review_notice_remind_at', 0);
+        $now         = time();
+
+        if ($state === 'later' && $now < $remindAt) {
+            return;
+        }
+        if ($state === 'pending' && ($now - $activatedAt) < (7 * DAY_IN_SECONDS)) {
+            return;
+        }
+
+        $screen = get_current_screen();
+        if (!$screen || false === strpos($screen->id, 'vaaky-highlighter')) {
+            return;
+        }
+
+        wp_enqueue_script(
+            $this->pluginSlug . '-review-notice',
+            plugin_dir_url(__FILE__) . 'js/review-notice.js',
+            array(),
+            $this->version,
+            true
+        );
+        include plugin_dir_path(__FILE__) . 'partials/review-notice.php';
+    }
+
+    /**
+     * Handle AJAX request for the review notice decision.
+     *
+     * @since   1.2.0
+     */
+    public function handleReviewNoticeAjax()
+    {
+        check_ajax_referer('vaaky_review_notice');
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('', 403);
+        }
+        $decision = isset($_POST['decision']) ? sanitize_text_field(wp_unslash($_POST['decision'])) : '';
+        if ($decision === 'later') {
+            update_option('vaaky_review_notice_state', 'later');
+            update_option('vaaky_review_notice_remind_at', time() + (14 * DAY_IN_SECONDS));
+        } else {
+            update_option('vaaky_review_notice_state', 'dismissed');
+        }
+        wp_send_json_success();
     }
 
 }

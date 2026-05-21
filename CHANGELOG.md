@@ -1,5 +1,28 @@
 # Vaaky Highlighter - Changelog
 
+### 1.2.0 &#8594; 2026-05-21
+
+- Added - Line numbers toggle per block + global default
+- Added - Floating copy-to-clipboard button on every code block
+- Added - Optional filename label (rendered as a tab above the code)
+- Added - Word-wrap toggle per block + global default
+- Added - Visual theme picker in settings page (replaces dropdown)
+- Added - Dismissible wp.org review notice (shown 7 days after activation)
+- Added - PHP 7.4 activation guard with admin notice
+- Changed - Migrated build toolchain to `@wordpress/scripts` (webpack 5, modern babel)
+- Changed - Block now registered via `block.json` (apiVersion 3)
+- Changed - Minimum PHP: 5.6 → 7.4
+- Changed - Minimum WordPress: 6.0 → 6.5
+- Changed - Author metadata updated to `techunfiltered.dev`
+- Changed - Twitter link replaced with X (`@__RaunakGupta`)
+- Changed - Go language slug normalized from `golang` to `go` (existing `golang` content was already broken; new value enables proper highlighting)
+- Removed - Facebook social link in admin sidebar
+- Removed - `webpack.config.js` (covered by `@wordpress/scripts` defaults)
+- Removed - `Admin/js/gutenberg.js` (replaced by `build/index.js`)
+- Removed - Dead code: `SettingsBase::whoAmI()` and `Settings::inputApperanceCallback()`
+- Security - Fixed reflected XSS in admin sidebar where `$_SERVER['HTTP_HOST']` was echoed unescaped into two UTM parameters
+- Security - Added `rel="noopener noreferrer"` to all external links in admin sidebar
+
 ### 1.1.0 &#8594; 2026-01-10
 
 - Changed - Updated WordPress compatibility to 6.9

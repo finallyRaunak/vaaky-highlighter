@@ -11,21 +11,36 @@
 [![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/vaaky-highlighter?style=flat-square)](https://wordpress.org/support/plugin/vaaky-highlighter/reviews/)
 
 
-Welcome to the Vaaky Highlighter repository on GitHub. Vaaky Highlighter is yet another syntax or code Snippet highlighter plugin, it uses [highlightjs plugin](https://github.com/highlightjs/highlight.js). Here you can browse the source, look at open issues and keep track of development. 
+Welcome to the Vaaky Highlighter repository on GitHub. Vaaky Highlighter is a lightweight syntax highlighter plugin for the WordPress Gutenberg editor, powered by [Highlight.js](https://github.com/highlightjs/highlight.js). Here you can browse the source, look at open issues, and keep track of development.
 
 If you are not a developer, please use the [Vaaky Highlighter plugin page](https://wordpress.org/plugins/vaaky-highlighter/) on WordPress.org.
+
+### Features
+
+- Beautiful syntax-highlighted **code blocks** in the Gutenberg editor
+- **Line numbers** (per-block toggle + global default)
+- **Floating copy-to-clipboard button**
+- Optional **filename label** rendered as a tab above the code
+- **Word-wrap** toggle per block + global default
+- **Visual theme picker** with live previews of 35+ themes
+- Automatic language detection via Highlight.js
+- Classic Editor shortcode support: `[vaakyHighlighterCode lang="php"]...[/vaakyHighlighterCode]`
 
 ### Quick Links
 
 - [Theme Demo](https://www.webhat.in/?page_id=626&utm_source=github&utm_medium=readme.md&utm_campaign=repositories&utm_id=vaaky_highlighter&utm_term=Theme+Demo)
+- [WordPress.org plugin page](https://wordpress.org/plugins/vaaky-highlighter/)
+- [Support forum](https://wordpress.org/support/plugin/vaaky-highlighter)
+- [Changelog](./CHANGELOG.md)
 
 ### About Highlight.js
 
 Highlight.js is a syntax highlighter written in JavaScript. It works in the browser as well as on the server. It can work with pretty much any markup, doesn’t depend on any other frameworks, and has automatic language detection.
 
 ### Requirements
-- PHP >= 5.6
-- WordPress >= 6.0
+
+- PHP >= 7.4
+- WordPress >= 6.5
 
 ### Reporting Security Issues
 To disclose a security issue to us, [please submit an issue with detailed report](https://github.com/finallyRaunak/vaaky-highlighter/issues/new/).
@@ -47,4 +62,4 @@ Feature requests can be [submitted to our issue tracker](https://github.com/fina
 - Icons made by [Freepik](https://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/)
 
 
-Made with 💜 by <a href="https://www.webhat.in/">WebHat</a>.
+Made with 💜 by <a href="https://techunfiltered.dev/">Raunak Gupta</a>.
