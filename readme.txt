@@ -140,11 +140,11 @@ The `lang` attribute is optional. If omitted, the language will be auto-detected
 
 == Screenshots ==
 
-1. Frontend code block with syntax highlighting, filename tab, line numbers, and floating copy button
-2. Block inspector — language, filename, line numbers, and word-wrap controls in the Gutenberg sidebar
-3. Visual theme picker with live previews of 35+ themes
-4. Plugin settings — appearance and block defaults
-5. Frontend rendering on a developer blog post
+1. Plugin settings — visual theme picker with live previews of 35+ themes, plus System Information and Quick Links sidebar
+2. Plugin settings — more theme previews plus the Block Defaults section (Code Overflow, Show Line Numbers, Word Wrap)
+3. Frontend rendering — TypeScript and JavaScript code blocks with line numbers and the floating copy button
+4. Frontend rendering — multi-language showcase (Dockerfile, Java, R, Ruby, PowerShell, Bash) with line numbers
+5. Frontend rendering — PHP and Twig code blocks with line numbers and syntax highlighting
 
 == Changelog ==
 
