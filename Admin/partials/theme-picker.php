@@ -50,7 +50,8 @@ $sampleHtml = '<pre><code class="hljs language-javascript">'
             <iframe
                 class="vaaky-theme-preview"
                 data-theme="<?php echo esc_attr($slug); ?>"
-                sandbox=""
+                sandbox="allow-same-origin"
+                referrerpolicy="same-origin"
                 loading="lazy"
                 tabindex="-1"
                 aria-hidden="true"
