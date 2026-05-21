@@ -38,8 +38,8 @@ Using it is simple: add the **Vaaky Highlighter Sourcecode block** in Gutenberg,
 
 = Minimum Requirements =
 
-* WordPress 6.0 or higher
-* PHP 5.6 or higher
+* WordPress 6.5 or higher
+* PHP 7.4 or higher
 
 = Automatic Installation =
 
@@ -129,7 +129,7 @@ https://github.com/finallyRaunak/vaaky-highlighter/issues
 
 = Does the plugin support line numbers? =
 
-No, line numbers are not supported at this time.
+Yes. Toggle line numbers per block from the block inspector, or set a global default under Settings → Vaaky Highlighter.
 
 = Does Vaaky Highlighter work with the Classic Editor? =
 

@@ -169,6 +169,9 @@ class Admin
     public function handleReviewNoticeAjax()
     {
         check_ajax_referer('vaaky_review_notice');
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error('', 403);
+        }
         $decision = isset($_POST['decision']) ? sanitize_text_field(wp_unslash($_POST['decision'])) : '';
         if ($decision === 'later') {
             update_option('vaaky_review_notice_state', 'later');
