@@ -22,7 +22,7 @@ jQuery(document).ready(function ($) {
     });
 
     jQuery('.vaaky-toolbar .vaaky-website-btn').off('click').on('click', function () {
-        window.open("https://www.webhat.in/?page_id=626&utm_source=plugin&utm_medium=code_btn&utm_id=vaaky_highlighter&utm_term=Website&utm_campaign=" + jQuery(location).attr('hostname'));
+        window.open("https://techunfiltered.dev/?utm_source=plugin&utm_medium=frontend_link&utm_campaign=vaaky_highlighter&utm_id=vaaky_highlighter&utm_term=Website");
     });
 
 });
