@@ -99,6 +99,16 @@ class Admin
          * To load only on a certain page, use the $hook.
          */
         wp_enqueue_style($styleId);
+
+        $screen = get_current_screen();
+        if ($screen && false !== strpos($screen->id, 'vaaky-highlighter')) {
+            wp_enqueue_style(
+                $this->pluginSlug . '-theme-picker',
+                plugin_dir_url(__FILE__) . 'css/theme-picker.css',
+                array(),
+                $this->version
+            );
+        }
     }
 
     /**

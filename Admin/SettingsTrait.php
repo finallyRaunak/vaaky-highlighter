@@ -4,7 +4,7 @@ namespace VaakyHighlighter\Admin;
 
 trait SettingsTrait
 {
-    public function selectThemeCallback()
+    public function getThemeList()
     {
         $themeDark  = [
             'monokai-sublime'          => 'Monokai (Sublime)',
@@ -14,7 +14,6 @@ trait SettingsTrait
             'stackoverflow-dark'       => 'StackOverflow Dark',
             'shades-of-purple'         => 'Shades of Purple Theme',
             'monokai'                  => 'Monokai',
-            'monokai-sublime'          => 'Sublime (Monokai)',
             'gradient-dark'            => 'Gradient Dark',
             'github-dark'              => 'GitHub Dark',
             'github-dark-dimmed'       => 'GitHub Dark Dimmed',
@@ -29,13 +28,12 @@ trait SettingsTrait
             'nord'                     => 'Nord',
         ];
         $themeLight = [
-            'github'              => 'Github',
+            'github'              => 'GitHub',
             'xcode'               => 'XCode',
             'vs'                  => 'Visual Studio',
             'stackoverflow-light' => 'StackOverflow Light',
             'gradient-light'      => 'Gradient Light',
             'googlecode'          => 'Google Code',
-            'github'              => 'GitHub',
             'atom-one-light'      => 'Atom One Light',
             'arduino-light'       => 'Arduino Light',
             'a11y-light'          => 'A 11 Y Light',
@@ -43,25 +41,18 @@ trait SettingsTrait
             'rose-pine-dawn'      => 'Rose Pine Dawn',
         ];
 
-        $html = sprintf('<select id="%s" name="%s[%s]">', $this->themeId, $this->settingOptionName, $this->themeId);
-        $html .= '<option value="">' . esc_html__('Select a theme...', 'vaaky-highlighter') . '</option>';
-        $html .= '<optgroup label="' . esc_html__('Light Theme', 'vaaky-highlighter') . '">';
-        foreach ($themeLight as $lThemeSlug => $lThemeLabel)
-        {
-            $html .= sprintf('<option value="%s" %s >%s</option>', $lThemeSlug, selected($this->settingOptions[$this->themeId], $lThemeSlug, false), esc_html__($lThemeLabel, 'vaaky-highlighter'));
-        }
-        $html .= '</optgroup>';
+        return array_merge($themeLight, $themeDark);
+    }
 
-        $html .= '<optgroup label="' . esc_html__('Dark Theme', 'vaaky-highlighter') . '">';
-        foreach ($themeDark as $dThemeSlug => $dThemeLabel)
-        {
-            $html .= sprintf('<option value="%s" %s >%s</option>', $dThemeSlug, selected($this->settingOptions[$this->themeId], $dThemeSlug, false), esc_html__($dThemeLabel, 'vaaky-highlighter'));
-        }
-        $html .= '</optgroup>';
-        $html .= '</select>';
-        $html .= '<p class="description">' . __('Select the highlighter theme. Default is GitHub Light.', 'vaaky-highlighter') . '</p>';
+    public function selectThemeCallback()
+    {
+        $themes       = $this->getThemeList();
+        $currentTheme = $this->getTheme();
+        $fieldName    = $this->settingOptionName . '[' . $this->themeId . ']';
 
-        echo $html;
+        include plugin_dir_path(__FILE__) . 'partials/theme-picker.php';
+
+        echo '<p class="description">' . esc_html__('Select the highlighter theme. Default is GitHub Light.', 'vaaky-highlighter') . '</p>';
     }
 
     public function inputApperanceCallback()

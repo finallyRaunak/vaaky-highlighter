@@ -1,0 +1,45 @@
+.vaaky-theme-picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    max-width: 900px;
+}
+.vaaky-theme-card {
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+}
+.vaaky-theme-card.is-selected,
+.vaaky-theme-card:has(input:checked) {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+.vaaky-theme-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+.vaaky-theme-preview {
+    display: block;
+    height: 80px;
+    border-radius: 4px;
+    padding: 10px;
+    overflow: hidden;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    background: #1e1e1e;
+    color: #ddd;
+}
+.vaaky-theme-preview .hl-kw  { color: #c678dd; }
+.vaaky-theme-preview .hl-fn  { color: #61afef; }
+.vaaky-theme-preview .hl-str { color: #98c379; }
+.vaaky-theme-label {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+}
