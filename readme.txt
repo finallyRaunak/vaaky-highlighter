@@ -1,6 +1,5 @@
 === Vaaky Highlighter — Syntax Highlighter, Code Blocks, Line Numbers for Gutenberg ===
 Contributors: raunak01
-Donate link: https://www.webhat.in/
 Tags: syntax highlighter, code blocks, line numbers, code snippet, prism
 Requires at least: 6.5
 Tested up to: 6.9
