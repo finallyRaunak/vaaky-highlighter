@@ -19,7 +19,7 @@ if (!defined('ABSPATH'))
  *
  * @package    VaakyHighlighter
  * @subpackage VaakyHighlighter/Admin
- * @author     Raunak Gupta <raunak.gupta@webhat.in>
+ * @author     Raunak Gupta <hello@techunfiltered.dev>
  */
 class Admin
 {

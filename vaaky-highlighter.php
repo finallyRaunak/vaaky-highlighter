@@ -12,7 +12,7 @@
  * Description:       Lightweight syntax highlighter for Gutenberg powered by Highlight.js. Add fast, beautiful, and responsive code blocks with automatic language detection.
  * Version:           1.1.0
  * Author:            Raunak Gupta
- * Author URI:        https://www.webhat.in/
+ * Author URI:        https://techunfiltered.dev/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       vaaky-highlighter

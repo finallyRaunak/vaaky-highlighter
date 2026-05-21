@@ -17,7 +17,7 @@ if (!defined('ABSPATH'))
  * @since      1.0.0
  * @package    VaakyHighlighter
  * @subpackage VaakyHighlighter/Includes
- * @author     Raunak Gupta <raunak.gupta@webhat.in>
+ * @author     Raunak Gupta <hello@techunfiltered.dev>
  */
 class I18n
 {

@@ -20,7 +20,7 @@ if (!defined('ABSPATH'))
  *
  * @package    VaakyHighlighter
  * @subpackage VaakyHighlighter/Frontend
- * @author     Raunak Gupta <raunak.gupta@webhat.in>
+ * @author     Raunak Gupta <hello@techunfiltered.dev>
  */
 class Frontend
 {
