@@ -47,4 +47,4 @@ Feature requests can be [submitted to our issue tracker](https://github.com/fina
 - Icons made by [Freepik](https://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/)
 
 
-Made with 💜 by <a href="https://www.webhat.in/">WebHat</a>.
+Made with 💜 by <a href="https://techunfiltered.dev/">Raunak Gupta</a>.
