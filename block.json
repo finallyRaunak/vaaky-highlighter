@@ -4,7 +4,7 @@
     "name": "vaaky-highlighter/code-khand",
     "version": "1.2.0",
     "title": "Vaaky Highlighter",
-    "category": "common",
+    "category": "text",
     "icon": "editor-code",
     "description": "Syntax-highlighted code block powered by Highlight.js.",
     "textdomain": "vaaky-highlighter",
